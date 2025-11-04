@@ -1,0 +1,27 @@
+import Home from "@/pages/Home";
+import List from "@/pages/List";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RootLayout from "./RootLayout";
+
+const PATHS = {
+  INDEX: "/",
+  LIST: "/list",
+  MYPAGE: "/mypage",
+};
+
+const router = createBrowserRouter([
+  {
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: PATHS.LIST, element: <List /> },
+      { path: "*", element: <div>404 에러 쵸비상</div> },
+    ],
+  },
+]);
+
+const AppRouter = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default AppRouter;
