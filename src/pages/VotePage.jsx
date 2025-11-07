@@ -74,6 +74,7 @@ const Container = styled.div`
   display:flex;
   flex-direction:column;
   color:#fff;
+  border-radius : 16px;
 `;
 
 const Header = styled.div`

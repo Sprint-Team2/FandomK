@@ -23,8 +23,8 @@ const Item = styled.div`
   gap: 10px;
   border-bottom: 1px solid rgba(225, 225, 225, 0.1);
   cursor: pointer;
-  background: ${({ $selected }) => ($selected ? "rgba(249,109,105,0.08)" : "transparent")};
-  transition: background 0.2s ease;
+  /* background: ${({ $selected }) => ($selected ? "rgba(249,109,105,0.08)" : "transparent")};
+  transition: background 0.2s ease; */
 `;
 
 const Img = styled.img`
