@@ -1,8 +1,9 @@
 import { creditStorage } from "@/storage/credit.storage";
-import { useEffect, useState } from "react";
-import { CreditContext } from "./useCreditContext";
+import { createContext, useContext, useEffect, useState } from "react";
 
-const CreditProvider = ({ children }) => {
+const CreditContext = createContext(null);
+
+export const CreditProvider = ({ children }) => {
   const [credit, setCredit] = useState(() => creditStorage.get());
 
   useEffect(() => {
@@ -35,4 +36,12 @@ const CreditProvider = ({ children }) => {
   return <CreditContext.Provider value={[credit, actions]}>{children}</CreditContext.Provider>;
 };
 
-export default CreditProvider;
+const useCreditContext = () => {
+  const context = useContext(CreditContext);
+  if (!context) {
+    throw new Error("useCreditContext must be used within a CreditProvider");
+  }
+  return context;
+};
+
+export default useCreditContext;

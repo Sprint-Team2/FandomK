@@ -1,7 +1,7 @@
+import { CreditProvider } from "@/app/contexts/CreditContext";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import AppRouter from "./app/AppRouter";
-import CreditProvider from "@/app/contexts/CreditProvider";
 import { GlobalStyle } from "./styles/globalStyle";
 
 createRoot(document.getElementById("root")).render(
