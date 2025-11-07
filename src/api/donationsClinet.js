@@ -1,12 +1,25 @@
 import client from "./client";
 import PATCHS from "./path";
 
-export const getDonationList = async (config) => {
-  const response = await client.get(PATCHS.donations, config);
-  return response;
+/**
+ * @param {{
+ *   priorityIdolIds?: number[],
+ *   cursor?: number,
+ *   pageSize?: number,
+ * }} params
+ */
+export const getDonationList = async (params) => {
+  const response = await client.get(PATCHS.donations, {
+    params,
+  });
+  return response.data;
 };
 
-export const contributeDonation = async (id, data, config) => {
-  const response = await client.put(`${PATCHS.donations}/${id}/contribute`, data, config);
-  return response;
+/**
+ * @param { number } id // 후원 id
+ * @param {{ amount: number }} body // 후원 데이터
+ */
+export const contributeDonation = async (id, body) => {
+  const response = await client.put(`${PATCHS.donations}/${id}/contribute`, body);
+  return response.data;
 };
