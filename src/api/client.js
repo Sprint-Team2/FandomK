@@ -44,35 +44,4 @@ const onError = (error) => {
 
 client.interceptors.response.use(onResponse, onError);
 
-export const Get = async (url, config) => {
-  const response = await client.get(url, config);
-  return response.data;
-};
-
-export const Post = async (url, data, config) => {
-  const response = await client.post(url, data, config);
-
-  return response.data;
-};
-
-export const Put = async (url, data, config) => {
-  const response = await client.put(url, data, config);
-  return response.data;
-};
-
-export const Patch = async (url, data, config) => {
-  const response = await client.patch(url, data, config);
-
-  return response.data;
-};
-
-export const Delete = async (url, data, config) => {
-  const response = await client.delete(url, {
-    ...config,
-    data,
-  });
-
-  return response.data;
-};
-
 export default client;
