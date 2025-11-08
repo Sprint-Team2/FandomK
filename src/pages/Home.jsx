@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import imgHome1 from "../assets/imgs/home1.png";
-import phoneImg1 from "../assets/imgs/Home2-1.png";
+import phoneImg1 from "../assets/imgs/phone2-1.png";
 import imgHome2 from "../assets/imgs/home2.png";
-import phoneImg2 from "../assets/imgs/Home3-2.png";
+import phoneImg2 from "../assets/imgs/phone3-2.png";
 import imgHome3 from "../assets/imgs/home3.png";
-import phoneImg3 from "../assets/imgs/Home4-3.png";
+import phoneImg3 from "../assets/imgs/phone4-3.png";
 import imgHome4 from "../assets/imgs/home4.png";
 import imgLogo from "../assets/imgs/logo.svg";
 import styled from "styled-components";
@@ -31,9 +31,7 @@ function Home() {
             <img src={imgLogo} alt="팬덤케이 로고" />
           </LogoContainer>
           <img src={imgHome1} alt="지금 시작하기" />
-          <StartButton onClick={goListPage}>
-            지금 시작하기
-          </StartButton>
+          <StartButton onClick={goListPage}>지금 시작하기</StartButton>
         </FirstSectionBox>
       </FirstSection>
 
@@ -88,7 +86,7 @@ function Home() {
         </SectionBox>
       </Section>
 
-      <VerticalLine/>
+      <VerticalLine />
     </Container>
   );
 }
@@ -160,7 +158,7 @@ const FirstSectionBox = styled.div`
       left: 0px;
       right: 0px;
       top: 50%;
-      transform: translateY(-50%) scale(111.2%);  
+      transform: translateY(-50%) scale(111.2%);
     }
   }
 
@@ -201,7 +199,7 @@ const LogoContainer = styled.div`
       width: 325.34px;
       height: 62px;
     }
-  }  
+  }
 
   @media (max-width: 576px) {
     gap: 20px;
