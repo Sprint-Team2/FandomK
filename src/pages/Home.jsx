@@ -1,6 +1,6 @@
-import VotePage from "@/components/VoteSection";
+import VoteSection from "../components/vote/VoteSection.jsx";
 function Home() {
-  return <VotePage />;
+  return <VoteSection />;
 }
 
 export default Home;
