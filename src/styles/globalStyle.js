@@ -148,6 +148,7 @@ export const GlobalStyle = createGlobalStyle`
   select,
   textarea {
     font-family: inherit;
+    color: var(--white-F7F7F8);
     border: none;
     background: none;
     outline: none;
