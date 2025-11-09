@@ -1,7 +1,19 @@
+import { Modal } from "@/components/Modal";
+import { RechargeModalContent } from "@/components/RechargeModalContent";
+import { useState } from "react";
+
 function List() {
+  const [showRechargeModal, setShowRechargeModal] = useState(true);
+
   return (
     <>
-      <div>나는 목록페이지임</div>
+      <Modal
+        title="크레딧 충전하기"
+        isOpen={showRechargeModal}
+        onClose={() => setShowRechargeModal(false)}
+      >
+        <RechargeModalContent onClose={() => setShowRechargeModal(false)} />
+      </Modal>
     </>
   );
 }
