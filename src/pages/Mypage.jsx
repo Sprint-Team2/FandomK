@@ -1,7 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
 import IdolCard from "../components/IdolCard";
 
-// 테스트 데이터
+// 테스트 데이터 - 전체 아이돌 목록
 const TEST_IDOLS = [
   {
     id: 1,
@@ -60,19 +61,24 @@ const TEST_IDOLS = [
 ];
 
 const Mypage = () => {
+  // 상태 관리: 사용자가 선택한 관심 아이돌 ID 목록
+  const [selectedIdols, setSelectedIdols] = useState([1, 2]); // 초기값: 테스트용으로 1, 2번 선택
+
+  // 선택된 아이돌 객체 배열 가져오기
+  const favoriteIdols = TEST_IDOLS.filter((idol) => selectedIdols.includes(idol.id));
+
   return (
     <>
-      <header>
-        <div>fandomK 헤더</div>
-      </header>
       <MypageContainer>
         {/* 내가 관심있는 아이돌 섹션 */}
         <FavoriteSection>
           <SectionTitle>내가 관심있는 아이돌</SectionTitle>
           <FavoriteIdolsList>
-            {TEST_IDOLS.slice(0, 2).map((idol) => (
-              <IdolCard key={idol.id} idol={idol} size="small" />
-            ))}
+            {favoriteIdols.length > 0 ? (
+              favoriteIdols.map((idol) => <IdolCard key={idol.id} idol={idol} size="small" />)
+            ) : (
+              <EmptyMessage>관심 아이돌을 추가해보세요!</EmptyMessage>
+            )}
           </FavoriteIdolsList>
         </FavoriteSection>
 
@@ -135,6 +141,15 @@ const FavoriteIdolsList = styled.div`
   flex-wrap: wrap;
   padding: 20px;
   min-height: 100px;
+`;
+
+// 빈 상태 메시지
+const EmptyMessage = styled.div`
+  width: 100%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  padding: 40px 0;
 `;
 
 // 구분선
