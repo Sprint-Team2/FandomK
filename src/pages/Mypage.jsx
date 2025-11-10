@@ -62,10 +62,15 @@ const TEST_IDOLS = [
 
 const Mypage = () => {
   // 상태 관리: 사용자가 선택한 관심 아이돌 ID 목록
-  const [selectedIdols, setSelectedIdols] = useState([1, 2]); // 초기값: 테스트용으로 1, 2번 선택
+  const [selectedIdols, setSelectedIdols] = useState([1, 2, 3]); // 초기값: 테스트용으로 1, 2번 선택
 
   // 선택된 아이돌 객체 배열 가져오기
   const favoriteIdols = TEST_IDOLS.filter((idol) => selectedIdols.includes(idol.id));
+
+  // 관심 아이돌 삭제 핸들러
+  const handleRemoveIdol = (idolId) => {
+    setSelectedIdols((prev) => prev.filter((id) => id !== idolId));
+  };
 
   return (
     <>
@@ -75,7 +80,15 @@ const Mypage = () => {
           <SectionTitle>내가 관심있는 아이돌</SectionTitle>
           <FavoriteIdolsList>
             {favoriteIdols.length > 0 ? (
-              favoriteIdols.map((idol) => <IdolCard key={idol.id} idol={idol} size="small" />)
+              favoriteIdols.map((idol) => (
+                <IdolCard
+                  key={idol.id}
+                  idol={idol}
+                  size="small"
+                  showDeleteButton={true}
+                  onRemove={handleRemoveIdol}
+                />
+              ))
             ) : (
               <EmptyMessage>관심 아이돌을 추가해보세요!</EmptyMessage>
             )}
