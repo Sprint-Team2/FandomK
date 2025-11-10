@@ -1,6 +1,7 @@
-import VoteSection from "../components/vote/VoteSection.jsx";
-function Home() {
-  return <VoteSection />;
+export default function Home() {
+  return (
+    <main>
+      <h1>홈</h1>
+    </main>
+  );
 }
-
-export default Home;

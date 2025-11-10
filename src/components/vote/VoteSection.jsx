@@ -1,21 +1,6 @@
-import React, { useEffect, useState } from "react";
-import ListItem from "../ListItem.jsx";
-import {
-  Container,
-  Modal,
-  Header,
-  Title,
-  CloseBtn,
-  List,
-  Vote,
-  Votebtn,
-  VoteNotice,
-  Credit,
-  MobileHeader,
-  BackBtn,
-  Rbox,
-  TransparentOverlay,
-} from "./VoteSection.style.js";
+import { useEffect, useState } from "react";
+import ListItem from "../ListItem/ListItem.jsx";
+import * as S from "./VoteSection.style.js";
 
 const VoteSection = () => {
   const [list, setList] = useState([]);
@@ -54,19 +39,19 @@ const VoteSection = () => {
   };
 
   return (
-    <Container>
-      <Modal>
-        <MobileHeader>
-          <BackBtn></BackBtn>
-          <Title>이달의 여자 아이돌</Title>
-          <Rbox></Rbox>
-        </MobileHeader>
-        <Header>
-          <Title>이달의 여자 아이돌</Title>
-          <CloseBtn aria-label="닫기"></CloseBtn>
-        </Header>
+    <S.Container>
+      <S.Modal>
+        <S.MobileHeader>
+          <S.BackBtn></S.BackBtn>
+          <S.Title>이달의 여자 아이돌</S.Title>
+          <S.Rbox></S.Rbox>
+        </S.MobileHeader>
+        <S.Header>
+          <S.Title>이달의 여자 아이돌</S.Title>
+          <S.CloseBtn aria-label="닫기"></S.CloseBtn>
+        </S.Header>
 
-        <List>
+        <S.List>
           {list.map((c) => (
             <ListItem
               key={c.id}
@@ -79,20 +64,19 @@ const VoteSection = () => {
               onSelect={setSelectedId}
             />
           ))}
-        </List>
+        </S.List>
+        <S.TransparentOverlay />
 
-        <TransparentOverlay />
-
-        <Vote>
-          <Votebtn disabled={!selectedId} onClick={submit}>
+        <S.Vote>
+          <S.Votebtn disabled={!selectedId} onClick={submit}>
             투표하기
-          </Votebtn>
-          <VoteNotice>
-            투표하는데 <Credit>1000</Credit> 크레딧이 소모됩니다.
-          </VoteNotice>
-        </Vote>
-      </Modal>
-    </Container>
+          </S.Votebtn>
+          <S.VoteNotice>
+            투표하는데 <S.Credit>1000</S.Credit> 크레딧이 소모됩니다.
+          </S.VoteNotice>
+        </S.Vote>
+      </S.Modal>
+    </S.Container>
   );
 };
 export default VoteSection;

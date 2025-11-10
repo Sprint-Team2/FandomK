@@ -11,7 +11,7 @@ export const Container = styled.div`
   z-index: 999;
 
   @media (max-width: 524px) {
-    background: transparent rgba(2, 0, 14, 1);
+    background: rgba(2, 0, 14, 1);
     display: block;
   }
 `;
@@ -43,7 +43,7 @@ export const Modal = styled.div`
 export const Header = styled.div`
   width: 100%;
   height: 24px;
-  padding-bottom: 34ㅎpx;
+  padding-bottom: 34px;
   display: flex;
   justify-content: space-between;
 

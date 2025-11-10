@@ -1,9 +1,7 @@
+import VoteSection from "../components/vote/VoteSection.jsx";
+
 function List() {
-  return (
-    <>
-      <div>나는 목록페이지임</div>
-    </>
-  );
+  return <VoteSection></VoteSection>;
 }
 
 export default List;
