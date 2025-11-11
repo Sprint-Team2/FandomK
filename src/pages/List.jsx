@@ -1,4 +1,4 @@
-import { MyCredit } from "@/components/MyCredit";
+import { MyCredit } from "@/components/layout/MyCredit";
 
 function List() {
   return (
