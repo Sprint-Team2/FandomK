@@ -1,7 +1,14 @@
+import { MyCredit } from "@/components/MyCredit";
+
 import VoteSection from "../components/vote/VoteSection.jsx";
 
 function List() {
-  return <VoteSection></VoteSection>;
+  return (
+    <>
+      <MyCredit />
+      <VoteSection />;
+    </>
+  );
 }
 
 export default List;
