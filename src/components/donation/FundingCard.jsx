@@ -11,14 +11,21 @@ const CustomizedTooltip = ({ targetDonation, receivedDonations }) => {
   );
 };
 
-const FundingCard = ({ item }) => {
+const FundingCard = ({ item, onClick }) => {
   const deadline = getRemainingDays(item.deadline);
 
   return (
     <S.FundingCard>
       <S.ImgWrapper>
         <img src={item.idol.profilePicture} alt={item.idol.name} />
-        <S.DonationButton>후원하기</S.DonationButton>
+        <S.DonationButton
+          onClick={() => {
+            onClick.onOpen();
+            onClick.handleContent(item);
+          }}
+        >
+          후원하기
+        </S.DonationButton>
       </S.ImgWrapper>
       <S.TitleWrapper>
         <S.SubTitle>{item.subtitle}</S.SubTitle>
