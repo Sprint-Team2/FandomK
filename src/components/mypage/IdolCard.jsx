@@ -1,4 +1,4 @@
-import MyPageDelete from "../../assets/Mypage_delete";
+import MypageDelete from "@/assets/svg/MypageDeleteSvg";
 import * as S from "./IdolCard.style";
 
 const IdolCard = ({
@@ -30,7 +30,7 @@ const IdolCard = ({
             }}
             aria-label="삭제"
           >
-            <MyPageDelete />
+            <MypageDelete />
           </S.DeleteButton>
         )}
 

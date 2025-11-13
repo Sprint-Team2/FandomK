@@ -1,150 +1,53 @@
 import { useState, useEffect } from "react";
 import IdolCard from "@/components/mypage/IdolCard";
-import MypageAdd from "../assets/Mypage_add";
-import MypageArrow from "../assets/Mypage_arrow";
+import MypageAdd from "@/assets/svg/MypageAddSvg";
+import MypageArrow from "@/assets/svg/MypageArrowSvg";
+import { getIdolList } from "@/api/idolsClient";
 import * as S from "./Mypage.style";
-
-// 테스트 데이터 - 전체 아이돌 목록
-const TEST_IDOLS = [
-  {
-    id: 1,
-    name: "린",
-    group: "메이브",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 2,
-    name: "로제",
-    group: "블랙핑크",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 3,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 4,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 5,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 6,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 7,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 8,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 9,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 10,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 11,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 12,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 13,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 14,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 15,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 16,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 17,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 18,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 19,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-  {
-    id: 20,
-    name: "카리나",
-    group: "에스파",
-    profileImage: "/placeholder.png",
-  },
-];
 
 const IDOLS_PER_PAGE = 16; // 8열 2행
 
 const Mypage = () => {
   // 상태 관리: 사용자가 선택한 관심 아이돌 ID 목록
-  const [selectedIdols, setSelectedIdols] = useState([1, 2]); // 초기값: 테스트용으로 1, 2번 선택
+  const [selectedIdols, setSelectedIdols] = useState([]);
 
   // 추가하려고 선택 중인 아이돌 ID 목록
   const [selectedIds, setSelectedIds] = useState([]);
 
-  // 현재 페이지
+  // API로 불러온 전체 아이돌 목록
+  const [allIdols, setAllIdols] = useState([]);
+
+  // 로딩 및 에러 상태
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // 현재 페이지 (추가 가능한 아이돌 목록용)
   const [currentPage, setCurrentPage] = useState(0);
 
+  // 컴포넌트 마운트 시 아이돌 목록 불러오기
+  useEffect(() => {
+    const fetchIdols = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await getIdolList({ pageSize: 100 }); // 충분히 큰 페이지 사이즈로 전체 목록 가져오기
+        setAllIdols(data.list || []);
+      } catch (err) {
+        console.error("아이돌 목록을 불러오는데 실패했습니다:", err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchIdols();
+  }, []);
+
   // 선택된 아이돌 객체 배열 가져오기
-  const favoriteIdols = TEST_IDOLS.filter((idol) => selectedIdols.includes(idol.id));
+  const favoriteIdols = allIdols.filter((idol) => selectedIdols.includes(idol.id));
 
   // 추가 가능한 아이돌 (이미 관심 아이돌에 없는 것만)
-  const availableIdols = TEST_IDOLS.filter((idol) => !selectedIdols.includes(idol.id));
+  const availableIdols = allIdols.filter((idol) => !selectedIdols.includes(idol.id));
 
   // 현재 페이지의 아이돌들
   const currentPageIdols = availableIdols.slice(
@@ -189,6 +92,24 @@ const Mypage = () => {
     }
   };
 
+  // 로딩 중일 때
+  if (isLoading) {
+    return (
+      <S.MypageContainer>
+        <S.SectionTitle>아이돌 목록을 불러오는 중...</S.SectionTitle>
+      </S.MypageContainer>
+    );
+  }
+
+  // 에러 발생 시
+  if (error) {
+    return (
+      <S.MypageContainer>
+        <S.SectionTitle>오류가 발생했습니다: {error}</S.SectionTitle>
+      </S.MypageContainer>
+    );
+  }
+
   return (
     <>
       <S.MypageContainer>
@@ -200,7 +121,12 @@ const Mypage = () => {
               favoriteIdols.map((idol) => (
                 <IdolCard
                   key={idol.id}
-                  idol={idol}
+                  idol={{
+                    id: idol.id,
+                    name: idol.name,
+                    group: idol.group,
+                    profileImage: idol.profilePicture,
+                  }}
                   size="small"
                   showDeleteButton={true}
                   onRemove={handleRemoveIdol}
@@ -229,7 +155,12 @@ const Mypage = () => {
               {currentPageIdols.map((idol) => (
                 <IdolCard
                   key={idol.id}
-                  idol={idol}
+                  idol={{
+                    id: idol.id,
+                    name: idol.name,
+                    group: idol.group,
+                    profileImage: idol.profilePicture,
+                  }}
                   size="large"
                   selected={selectedIds.includes(idol.id)}
                   onClick={() => handleSelectIdol(idol.id)}
