@@ -1,8 +1,8 @@
 import DonationSection from "@/components/donation/DonationSection.jsx";
-import { MyCredit } from "@/components/MyCredit";
+import MyCredit from "@/components/layout/MyCredit";
 import VoteSection from "@/components/vote/VoteSection";
 
-function List() {
+function ListPage() {
   return (
     <>
       <MyCredit />
@@ -12,4 +12,4 @@ function List() {
   );
 }
 
-export default List;
+export default ListPage;
