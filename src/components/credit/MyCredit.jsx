@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import useCreditContext from "@/app/contexts/CreditContext";
-import CreditSvg from "../svg/CreditSvg";
+import CreditSvg from "../../assets/svg/CreditSvg";
 import Modal from "../common/Modal";
 import RechargeModalContent from "../modal/RechargeModalContent";
 
