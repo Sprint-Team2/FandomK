@@ -1,4 +1,4 @@
-import credit from "@/assets/imgs/credit.png";
+import creditImg from "@/assets/imgs/credit.png";
 import { getRemainingDays } from "@/utils/date";
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import * as S from "./FundingCard.style";
@@ -33,7 +33,7 @@ const FundingCard = ({ item, onClick }) => {
       </S.TitleWrapper>
       <S.DirectionWrapper>
         <S.ReceivedDonations>
-          <img src={credit} alt="크레딧" />
+          <img src={creditImg} alt="크레딧" />
           {item.receivedDonations.toLocaleString()}
         </S.ReceivedDonations>
         <div> {deadline ? `${deadline}일 남음` : "기한 만료"}</div>

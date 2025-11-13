@@ -66,6 +66,17 @@ export const InputWrapper = styled.div`
     width: 24px;
     height: 24px;
   }
+
+  ${({ $isNotEnough }) => $isNotEnough && { borderColor: "#FF3B3B" }}
+`;
+
+export const MessageBox = styled.div`
+  margin-top: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ff2626;
+
+  ${({ $color }) => $color && { color: $color }}
 `;
 
 export const SubmitButton = styled.button`

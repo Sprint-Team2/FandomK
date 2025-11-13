@@ -1,27 +1,70 @@
-import credit from "@/assets/imgs/credit.png";
-import Modal from "../common/Modal";
-import * as S from "./DonationModal.style";
+// DonationModal.jsx
+import { contributeDonation } from "@/api/donationsClinet";
+import useCreditContext from "@/app/contexts/CreditContext";
+import { isNumber } from "@/utils/number";
+import { useState } from "react";
+import DonationModalUI from "./DonationModalUI";
 
-const DonationModal = ({ isOpen, onClose, content }) => {
+const DonationModal = ({ onSuccess, isOpen, onClose, content }) => {
+  const [donationCredit, setDonationCredit] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // 데이터 요청 로딩 상태
+  const [, { isEnoughCredit, subtractCredit }] = useCreditContext();
+
+  // 내용이 없으면 리턴
   if (!content) return null;
 
+  const isNotEnough = !isEnoughCredit(donationCredit);
+
+  const handleSetCredit = (e) => {
+    const inputValue = e.target.value;
+
+    // 숫자 or 빈 문자열만 허용
+    if (inputValue === "" || isNumber(inputValue)) {
+      setDonationCredit(inputValue);
+    }
+  };
+
+  const resetState = () => {
+    setDonationCredit("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // 새로고침 방지
+    const amount = Number(donationCredit);
+    try {
+      setIsLoading(true); // 로딩 시작
+      // 서버에 기부 요청
+      await contributeDonation(content.id, { amount });
+      subtractCredit(amount);
+      onClose();
+      resetState();
+      onSuccess({
+        donationId: content.id,
+        amount,
+      });
+    } catch (error) {
+      console.error("후원 실패:", error);
+    } finally {
+      setIsLoading(false); // 로딩 종료
+    }
+  };
+
+  const handleClose = () => {
+    resetState();
+    onClose();
+  };
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="후원하기">
-      <S.ChildrenWrapper>
-        <img src={content.idol.profilePicture} alt={content.idol.name} />
-        <S.TitleWrapper>
-          <S.SubTitle>{content.subtitle}</S.SubTitle>
-          <S.Title>{content.title}</S.Title>
-        </S.TitleWrapper>
-        <S.FormContainer>
-          <S.InputWrapper>
-            <input placeholder="크레딧 입력" />
-            <img src={credit} alt="크레딧" />
-          </S.InputWrapper>
-          <S.SubmitButton disabled={true}>후원하기</S.SubmitButton>
-        </S.FormContainer>
-      </S.ChildrenWrapper>
-    </Modal>
+    <DonationModalUI
+      isOpen={isOpen}
+      onClose={handleClose}
+      content={content}
+      donationCredit={donationCredit}
+      isNotEnough={isNotEnough}
+      onChangeCredit={handleSetCredit}
+      isLoading={isLoading}
+      onSubmit={handleSubmit}
+    />
   );
 };
 

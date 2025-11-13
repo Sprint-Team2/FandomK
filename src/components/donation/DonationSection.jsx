@@ -14,6 +14,20 @@ const DonationSection = () => {
     getDonationList().then((res) => setList(res.list));
   }, []);
 
+  // 후원 성공시 리스트 갱신
+  const handleDonationSuccess = ({ donationId, amount }) => {
+    setList((prevList) =>
+      prevList.map((item) =>
+        item.id === donationId
+          ? {
+              ...item,
+              receivedDonations: item.receivedDonations + amount,
+            }
+          : item
+      )
+    );
+  };
+
   return (
     <>
       <S.Contaier>
@@ -32,7 +46,12 @@ const DonationSection = () => {
           </S.SlideArrow>
         </S.SlideWrapper>
       </S.Contaier>
-      <DonationModal content={content} isOpen={isOpen} onClose={onClose} />
+      <DonationModal
+        onSuccess={handleDonationSuccess}
+        content={content}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </>
   );
 };
