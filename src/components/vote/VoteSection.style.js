@@ -54,11 +54,15 @@ export const Header = styled.div`
 
 export const MobileHeader = styled.div`
   display: none;
+
   @media (max-width: 524px) {
+    display: flex;
     width: 100%;
     height: 44px;
-    display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    position: relative;
   }
 `;
 
@@ -73,12 +77,13 @@ export const Rbox = styled.div`
 `;
 
 export const BackBtn = styled.button`
-  background-image: url(${backPng});
-  background-repeat: no-repeat;
   display: none;
   width: 24px;
   height: 24px;
-  background-size: contain;
+  background: url(${backPng}) no-repeat center / contain;
+  border: 0;
+  cursor: pointer;
+
   @media (max-width: 524px) {
     display: block;
   }
@@ -95,16 +100,11 @@ export const Title = styled.h2`
 `;
 
 export const CloseBtn = styled.button`
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff;
   width: 24px;
   height: 24px;
-  padding: 0;
-  margin: 0;
-  appearance: none;
   background: transparent url(${closePng}) no-repeat center / contain;
   border: 0;
+  cursor: pointer;
 `;
 
 export const List = styled.div`
@@ -112,6 +112,8 @@ export const List = styled.div`
   width: 100%;
   min-height: 0;
   overflow-y: auto;
+
+  /* 스크롤바 숨김(필요 시 제거 가능) */
   scrollbar-width: none;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
@@ -140,7 +142,10 @@ export const Vote = styled.div`
 `;
 
 export const TransparentOverlay = styled.div`
+  display: none;
+
   @media (max-width: 524px) {
+    display: block;
     height: 106px;
     position: fixed;
     left: 0;
@@ -166,10 +171,11 @@ export const Votebtn = styled.button`
 
   @media (max-width: 524px) {
     width: calc(100% - 32px);
-    margin: 16px 0px;
+    margin: 16px auto;
     height: 44px;
     font-size: 15px;
     pointer-events: auto;
+    display: block;
   }
 `;
 
@@ -177,6 +183,7 @@ export const VoteNotice = styled.p`
   font-size: 12px;
   margin: 0;
 `;
+
 export const Credit = styled.span`
   color: rgba(249, 109, 105, 1);
 `;

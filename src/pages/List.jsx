@@ -1,12 +1,11 @@
 import { MyCredit } from "@/components/MyCredit";
-
-import VoteSection from "../components/vote/VoteSection.jsx";
+import ChartSection from "@/components/Chart/ChartSection.jsx";
 
 function List() {
   return (
     <>
       <MyCredit />
-      <VoteSection />;
+      <ChartSection />;
     </>
   );
 }
