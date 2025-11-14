@@ -1,10 +1,23 @@
 import ArrowSvg from "@/assets/svg/ArrowSvg";
 import useDraggableSlider from "@/hooks/useDraggableSlider";
+import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import * as S from "./DonationSlider.style";
 import FundingCard from "./FundingCard";
+import FundingCardSkeletonComponent from "./FundingCardSkeleton";
 
-const DonationSlider = ({ list, onClick }) => {
-  const drag = useDraggableSlider(list.length);
+const DonationSlider = ({ list, onClick, handleReachEnd, cursor }) => {
+  const drag = useDraggableSlider(cursor);
+
+  // sentinelRef가 보이면 함수 호출
+  const sentinelRef = useIntersectionObserver({
+    rootRef: drag.viewportRef,
+    enabled: drag.hasMore,
+    onIntersect: () => {
+      handleReachEnd();
+    },
+    threshold: 0.5,
+  });
+
   return (
     <S.SlideWrapper>
       <S.SlideArrow
@@ -26,6 +39,11 @@ const DonationSlider = ({ list, onClick }) => {
           {list.map((item) => (
             <FundingCard onClick={onClick} item={item} key={item.id} />
           ))}
+          {cursor !== null && (
+            <div ref={sentinelRef}>
+              <FundingCardSkeletonComponent />
+            </div>
+          )}
         </S.SlideTrack>
       </S.FundingCardWrapper>
       <S.SlideArrow
@@ -41,5 +59,3 @@ const DonationSlider = ({ list, onClick }) => {
 };
 
 export default DonationSlider;
-
-// const { sizes, getOffset, slideToInstant, slideToAnimated } = core;
