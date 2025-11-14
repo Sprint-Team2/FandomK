@@ -9,6 +9,13 @@ export const Wrap = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (min-width: 745px) and (max-width: 1199px) {
+    padding: 0px 24px;
+  }
+
+  @media (max-width: 744px) {
+    padding: 0px 24px;
+  }
 `;
 
 export const ChartHeader = styled.div`
