@@ -3,13 +3,17 @@ import IdolCard from "@/components/mypage/IdolCard";
 import MypageAdd from "@/assets/svg/MypageAddSvg";
 import MypageArrow from "@/assets/svg/MypageArrowSvg";
 import { getIdolList } from "@/api/idolsClient";
+import { idolsStorage } from "@/storage/idols.storage";
 import * as S from "./Mypage.style";
 
 const IDOLS_PER_PAGE = 16; // 8열 2행
 
 const Mypage = () => {
   // 상태 관리: 사용자가 선택한 관심 아이돌 ID 목록
-  const [selectedIdols, setSelectedIdols] = useState([]);
+  const [selectedIdols, setSelectedIdols] = useState(() => {
+    // 초기값을 로컬스토리지에서 불러오기
+    return idolsStorage.get();
+  });
 
   // 추가하려고 선택 중인 아이돌 ID 목록
   const [selectedIds, setSelectedIds] = useState([]);
@@ -42,6 +46,11 @@ const Mypage = () => {
 
     fetchIdols();
   }, []);
+
+  // selectedIdols 변경 시 로컬스토리지에 저장
+  useEffect(() => {
+    idolsStorage.set(selectedIdols);
+  }, [selectedIdols]);
 
   // 선택된 아이돌 객체 배열 가져오기
   const favoriteIdols = allIdols.filter((idol) => selectedIdols.includes(idol.id));
