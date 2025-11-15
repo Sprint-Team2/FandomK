@@ -12,7 +12,7 @@ const DonationSection = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [cursor, setCursor] = useState(undefined);
 
-  const { content, handleContent, isOpen, onClose, onOpen } = useModal();
+  const { isOpen, modalContent, setModalContent, onOpen, onClose } = useModal();
 
   // 최초 로딩
   useEffect(() => {
@@ -63,12 +63,25 @@ const DonationSection = () => {
           list={list}
           cursor={cursor}
           handleReachEnd={handleReachEnd}
-          onClick={{ onOpen, handleContent }}
+          onClick={{ onOpen, setModalContent }}
         />
+        <S.SlideWrapper>
+          <S.SlideArrow $direction="left">
+            <ArrowSvg />
+          </S.SlideArrow>
+          <S.FundingCardWrapper>
+            {list.map((item) => (
+              <FundingCard onClick={{ onOpen, setModalContent }} item={item} key={item.id} />
+            ))}
+          </S.FundingCardWrapper>
+          <S.SlideArrow $direction="right">
+            <ArrowSvg />
+          </S.SlideArrow>
+        </S.SlideWrapper>
       </S.Contaier>
       <DonationModal
         onSuccess={handleDonationSuccess}
-        content={content}
+        content={modalContent}
         isOpen={isOpen}
         onClose={onClose}
       />
