@@ -65,19 +65,6 @@ const DonationSection = () => {
           handleReachEnd={handleReachEnd}
           onClick={{ onOpen, setModalContent }}
         />
-        <S.SlideWrapper>
-          <S.SlideArrow $direction="left">
-            <ArrowSvg />
-          </S.SlideArrow>
-          <S.FundingCardWrapper>
-            {list.map((item) => (
-              <FundingCard onClick={{ onOpen, setModalContent }} item={item} key={item.id} />
-            ))}
-          </S.FundingCardWrapper>
-          <S.SlideArrow $direction="right">
-            <ArrowSvg />
-          </S.SlideArrow>
-        </S.SlideWrapper>
       </S.Contaier>
       <DonationModal
         onSuccess={handleDonationSuccess}
