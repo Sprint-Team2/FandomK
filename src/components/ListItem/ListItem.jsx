@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import { memo } from "react";
 
-import { Item, Img, Rank, TextGroup, Name, ListVotes, RadioVisual } from "./ListItem.style.js";
+import { Img, Item, ListVotes, Name, RadioVisual, Rank, TextGroup } from "./ListItem.style";
 
 const listItem = ({ id, img, rank, name, votes, selected, onSelect }) => {
   const commaNum = (num) => Number(num).toLocaleString();

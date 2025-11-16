@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ListItem from "../ListItem/ListItem.jsx";
-import * as S from "./VoteSection.style.js";
+import ListItem from "../ListItem/ListItem";
+import * as S from "./VoteSection.style";
 
 const VoteSection = () => {
   const [list, setList] = useState([]);
