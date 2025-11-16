@@ -79,6 +79,7 @@
         "noEmptyLineBetween": true,
         "properties": ["animation"]
       }
-    ]
+    ],
+    "nesting-selector-no-missing-scoping-root": null
   }
 }

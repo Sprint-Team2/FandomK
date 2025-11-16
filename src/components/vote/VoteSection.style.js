@@ -3,33 +3,34 @@ import closePng from "../../assets/btn_delete_24px.png";
 import backPng from "../../assets/icj_arrow_left2.png";
 
 export const Container = styled.div`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
   display: grid;
-  place-items: center;
+  position: fixed;
   z-index: 999;
+  inset: 0;
+  background: rgb(0 0 0 / 70%);
+  place-items: center;
 
-  @media (max-width: 524px) {
-    background: rgba(2, 0, 14, 1);
+  @media (width <= 524px) {
+    background: rgb(2 0 14 / 100%);
     display: block;
   }
 `;
 
 export const Modal = styled.div`
-  width: 100%;
-  max-width: 524px;
-  height: 693px;
-  background: #181d26;
-  padding: 24px;
-  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  color: #fff;
-  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  height: 693px;
   margin: 0 auto;
+  padding: 24px;
 
-  @media (max-width: 524px) {
+  color: #fff;
+  max-width: 524px;
+  background: #181d26;
+  flex-direction: column;
+  border-radius: 16px;
+
+  @media (width <= 524px) {
     position: fixed;
     inset: 0;
     width: 100vw;
@@ -41,23 +42,24 @@ export const Modal = styled.div`
 `;
 
 export const Header = styled.div`
+  display: flex;
   width: 100%;
   height: 24px;
   padding-bottom: 34px;
-  display: flex;
   justify-content: space-between;
 
-  @media (max-width: 524px) {
+  @media (width <= 524px) {
     display: none;
   }
 `;
 
 export const MobileHeader = styled.div`
   display: none;
-  @media (max-width: 524px) {
+
+  @media (width <= 524px) {
+    display: flex;
     width: 100%;
     height: 44px;
-    display: flex;
     justify-content: space-between;
   }
 `;
@@ -65,7 +67,7 @@ export const MobileHeader = styled.div`
 export const Rbox = styled.div`
   display: none;
 
-  @media (max-width: 524px) {
+  @media (width <= 524px) {
     display: block;
     width: 24px;
     height: 24px;
@@ -79,32 +81,35 @@ export const BackBtn = styled.button`
   width: 24px;
   height: 24px;
   background-size: contain;
-  @media (max-width: 524px) {
+
+  @media (width <= 524px) {
     display: block;
   }
 `;
 
 export const Title = styled.h2`
-  font-size: 18px;
-  font-weight: 500;
   margin: 0;
 
-  @media (max-width: 524px) {
+  font-weight: 500;
+  font-size: 18px;
+
+  @media (width <= 524px) {
     font-size: 14px;
   }
 `;
 
 export const CloseBtn = styled.button`
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff;
   width: 24px;
   height: 24px;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  border: 0;
+
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
   appearance: none;
   background: transparent url(${closePng}) no-repeat center / contain;
-  border: 0;
 `;
 
 export const List = styled.div`
@@ -114,69 +119,74 @@ export const List = styled.div`
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  &::-webkit-scrollbar {
+
+  &:-webkit-scrollbar {
     display: none;
   }
 
-  @media (max-width: 524px) {
+  @media (width <= 524px) {
     height: 100%;
   }
 `;
 
 export const Vote = styled.div`
   width: 100%;
+
   text-align: center;
 
-  @media (max-width: 524px) {
-    height: 106px;
+  @media (width <= 524px) {
     position: fixed;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
+    z-index: 10;
+    height: 106px;
     background: transparent;
     pointer-events: none;
-    z-index: 10;
   }
 `;
 
 export const TransparentOverlay = styled.div`
-  @media (max-width: 524px) {
-    height: 106px;
+  @media (width <= 524px) {
     position: fixed;
-    left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(2, 0, 14, 0.8);
-    pointer-events: none;
+    left: 0;
     z-index: 9;
+    height: 106px;
+    background: rgb(2 0 14 / 80%);
+    pointer-events: none;
   }
 `;
 
 export const Votebtn = styled.button`
   width: 100%;
   height: 42px;
+  margin: 20px 0 12px;
+  border: 0;
+
+  color: #fff;
   font-size: 14px;
   cursor: pointer;
-  background: linear-gradient(90deg, rgba(248, 111, 101, 1) 0%, rgba(254, 84, 147, 1) 100%);
-  border: 0;
+  background: linear-gradient(90deg, rgb(248 111 101 / 100%) 0%, rgb(254 84 147 / 100%) 100%);
   border-radius: 10px;
-  margin: 20px 0 12px;
-  color: #fff;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
-  @media (max-width: 524px) {
+  @media (width <= 524px) {
     width: calc(100% - 32px);
-    margin: 16px 0px;
     height: 44px;
+    margin: 16px 0;
+
     font-size: 15px;
     pointer-events: auto;
   }
 `;
 
 export const VoteNotice = styled.p`
-  font-size: 12px;
   margin: 0;
+
+  font-size: 12px;
 `;
 export const Credit = styled.span`
-  color: rgba(249, 109, 105, 1);
+  color: rgb(249 109 105 / 100%);
 `;
