@@ -5,8 +5,9 @@ export const Item = styled.div`
   height: 70px;
   align-items: center;
   gap: 10px;
-  border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+  border-bottom: 1px solid rgb(225 225 225 / 10%);
   cursor: pointer;
+
   /* background: ${({ $selected }) => ($selected ? "rgba(249,109,105,0.08)" : "transparent")};
   transition: background 0.2s ease; */
 `;
@@ -20,9 +21,9 @@ export const Img = styled.img`
 `;
 
 export const Rank = styled.span`
-  font-size: 14px;
+  color: rgb(249 109 105 / 100%);
   font-weight: 400;
-  color: rgba(249, 109, 105, 1);
+  font-size: 14px;
 `;
 
 export const TextGroup = styled.div`
@@ -30,23 +31,24 @@ export const TextGroup = styled.div`
 `;
 
 export const Name = styled.p`
-  font-size: 14px;
   font-weight: 500;
+  font-size: 14px;
 `;
 
 export const ListVotes = styled.p`
-  font-size: 14px;
-  font-weight: 400;
-  color: #aaa;
   margin: 4px 0 0;
+
+  color: #aaa;
+  font-weight: 400;
+  font-size: 14px;
 `;
 
 export const RadioVisual = styled.span`
+  display: flex;
   width: 16px;
   height: 16px;
-  border-radius: 50%;
   border: 2px solid ${({ $selected }) => ($selected ? "#F96D69" : "#666")};
-  display: flex;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
 
