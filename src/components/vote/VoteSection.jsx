@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import * as S from "./VoteSection.style";
-import ListItem from "../listItem/ListItem";
-import client from "../../api/client";
 import { creditStorage } from "@/storage/credit.storage";
+import { useEffect, useState } from "react";
+import client from "../../api/client";
+import ListItem from "../listItem/ListItem";
 import CreditLimitModal from "./CreditLimitModal";
+import * as S from "./VoteSection.style";
 
 const VoteSection = ({ onClose, initialGender = "female" }) => {
   const [gender] = useState(initialGender);
@@ -33,7 +33,6 @@ const VoteSection = ({ onClose, initialGender = "female" }) => {
     };
 
     fetchIdols();
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [gender]);
 
   const submit = async () => {

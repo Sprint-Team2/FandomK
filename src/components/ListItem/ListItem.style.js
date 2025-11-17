@@ -5,7 +5,6 @@ export const Item = styled.div`
   align-items: center;
   gap: 10px;
   height: 70px;
-  border-bottom: 1px solid rgba(225, 225, 225, 0.1);
   padding: ${({ $variant }) => ($variant === "vote" ? "0 12px" : "0")};
   border-bottom: ${({ $variant }) =>
     $variant === "chart" ? "none" : "1px solid rgba(225, 225, 225, 0.1)"};
@@ -23,11 +22,12 @@ export const Img = styled.img`
 `;
 
 export const Rank = styled.span`
-  font-size: 14px;
   width: 18px;
+
+  color: rgb(249 109 105 / 100%);
+  font-size: 14px;
   text-align: right;
   opacity: 0.9;
-  color: rgba(249, 109, 105, 1);
 `;
 
 export const TextGroup = styled.div`
@@ -39,17 +39,19 @@ export const TextGroup = styled.div`
 `;
 
 export const Name = styled.p`
-  font-weight: 500;
-  margin: 0;
-  white-space: nowrap;
   overflow: hidden;
+  margin: 0;
+
+  font-weight: 500;
+  white-space: nowrap;
   text-overflow: ellipsis;
 `;
 
 export const ListVotes = styled.p`
-  font-size: 14px;
-  color: #aaa;
   margin: 0 0 0 auto;
+
+  color: #aaa;
+  font-size: 14px;
 `;
 
 export const RadioVisual = styled.span`

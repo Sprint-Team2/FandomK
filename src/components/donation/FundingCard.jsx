@@ -67,8 +67,8 @@ const FundingCard = ({ item, onClick }) => {
               barSize={2}
               radius={2}
               dataKey="pv"
-              fill="#F96D69"
-              background={{ fill: "var(--white-FFFFFF)", radius: 2 }}
+              fill="var(--color-primary)"
+              background={{ fill: "var(--color-white-100)", radius: 2 }}
             />
           </BarChart>
         </ResponsiveContainer>

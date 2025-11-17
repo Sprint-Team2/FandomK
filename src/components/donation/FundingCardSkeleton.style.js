@@ -11,8 +11,9 @@ const shimmer = keyframes`
 `;
 
 const SkeletonBase = styled.div`
-  background: linear-gradient(90deg, #2a2a2a 0px, #3a3a3a 40px, #2a2a2a 80px);
+  background: linear-gradient(90deg, #2a2a2a 0, #3a3a3a 40px, #2a2a2a 80px);
   background-size: 200px 100%;
+
   animation: ${shimmer} 1.4s ease-in-out infinite;
   border-radius: 4px;
 `;
@@ -23,17 +24,16 @@ export const FundingCardSkeleton = styled.div`
 `;
 
 export const ImgSkeleton = styled(SkeletonBase)`
-  margin-bottom: 8px;
-  border-radius: 8px;
   overflow: hidden;
   width: 158px;
   height: 206px;
+  margin-bottom: 8px;
   border-radius: 8px;
 
   @media ${media.tablet} {
-    margin-bottom: 12px;
     width: 282px;
     height: 294px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -71,11 +71,12 @@ export const TitleSkeleton = styled(SkeletonBase)`
 
 export const DirectionWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 1.2rem;
+
   font-weight: 400;
+  font-size: 1.2rem;
   line-height: 1.8rem;
+  justify-content: space-between;
 `;
 
 export const ToolTipSkeleton = styled(SkeletonBase)`

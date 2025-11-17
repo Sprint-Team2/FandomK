@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Item, Img, Rank, TextGroup, Name, ListVotes, RadioVisual } from "./ListItem.style.js";
+import { Item, Img, Rank, TextGroup, Name, ListVotes, RadioVisual } from "./ListItem.style";
 
 const ListItem = ({ id, img, rank, name, votes, selected, onSelect, variant = "vote" }) => {
   const commaNum = (num) => Number(num).toLocaleString();

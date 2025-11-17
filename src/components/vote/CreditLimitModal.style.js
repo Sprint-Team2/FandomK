@@ -2,24 +2,24 @@ import styled from "styled-components";
 import credit_icon from "../../assets/credit_113px.png";
 import closePng from "../../assets/btn_delete_24px.png";
 export const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
   display: flex;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgb(0 0 0 / 60%);
   justify-content: center;
   align-items: center;
-  z-index: 999;
 `;
 
 export const ModalBox = styled.div`
+  display: flex;
+  position: relative;
   width: 339px;
   height: 330px;
-  background: rgba(24, 29, 38, 1);
+  background: rgb(24 29 38 / 100%);
   border-radius: 12px;
-  display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 `;
 
 export const Icon = styled.div`
@@ -29,17 +29,18 @@ export const Icon = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin: 56px 24px 0px;
+  margin: 56px 24px 0;
 `;
 
 export const Message = styled.p`
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 1.5;
   margin-top: 31px;
 
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+
   span {
-    color: #ff7777;
+    color: #f77;
     font-weight: 600;
   }
 `;
@@ -47,15 +48,16 @@ export const Message = styled.p`
 export const ConfirmButton = styled.button`
   width: 295px;
   height: 42px;
-  border-radius: 3px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
   margin-top: 31px;
+  border: none;
+
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 3px;
+  cursor: pointer;
 
   background: linear-gradient(90deg, #f86f65 0%, #fe5493 100%);
-  color: #ffffff;
 `;
 
 export const CloseBtn = styled.button`

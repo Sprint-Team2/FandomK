@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  display: flex;
   position: fixed;
   inset: 0;
   justify-content: center;
   align-items: center;
+
+  background-color: #000c;
 `;
 
 export const ModalContainer = styled.div`
