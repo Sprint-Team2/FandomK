@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import IdolCard from "@/components/mypage/IdolCard";
-import MypageAdd from "@/assets/svg/MypageAddSvg";
-import MypageArrow from "@/assets/svg/MypageArrowSvg";
 import { getIdolList } from "@/api/idolsClient";
 import { getRecommendations } from "@/api/recommendationClient";
-import { idolsStorage } from "@/storage/idols.storage";
+import MypageAdd from "@/assets/svg/MypageAddSvg";
+import MypageArrow from "@/assets/svg/MypageArrowSvg";
+import IdolCard from "@/components/mypage/IdolCard";
 import useDraggableSlider from "@/hooks/useDraggableSlider";
+import { idolsStorage } from "@/storage/idols.storage";
+import { useEffect, useState } from "react";
 import * as S from "./Mypage.style";
 
 const Mypage = () => {
@@ -73,7 +73,6 @@ const Mypage = () => {
 
   // AI 추천 아이돌 목록
   const [recommendedIdols, setRecommendedIdols] = useState([]);
-  const [isLoadingRecommendations, setIsLoadingRecommendations] = useState(false);
 
   // 로딩 및 에러 상태
   const [isLoading, setIsLoading] = useState(false);
@@ -111,16 +110,12 @@ const Mypage = () => {
     const fetchRecommendations = async () => {
       // 관심 아이돌이 없으면 추천 안 함
       if (selectedIdols.length === 0 || allIdols.length === 0) {
-        console.log("AI 추천 스킵: 관심 아이돌 없음");
         setRecommendedIdols([]);
         return;
       }
 
-      console.log("🤖 AI 추천 요청 시작:", selectedIdols);
-      setIsLoadingRecommendations(true);
       try {
         const result = await getRecommendations(selectedIdols, recommendCount);
-        console.log("✅ AI 추천 응답:", result);
 
         const { recommended_ids } = result;
 
@@ -129,16 +124,10 @@ const Mypage = () => {
           .map((id) => allIdols.find((idol) => idol.id === id))
           .filter((idol) => idol && !selectedIdols.includes(idol.id)); // 이미 선택된 건 제외
 
-        console.log(
-          "📋 추천 아이돌 목록:",
-          recommended.map((i) => i?.name)
-        );
         setRecommendedIdols(recommended);
       } catch (err) {
         console.error("❌ 추천을 불러오는데 실패했습니다:", err);
         setRecommendedIdols([]);
-      } finally {
-        setIsLoadingRecommendations(false);
       }
     };
 

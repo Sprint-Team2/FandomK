@@ -56,14 +56,13 @@ export const Header = styled.div`
 export const MobileHeader = styled.div`
   display: none;
 
-  @media (max-width: 524px) {
+  @media (width <= 524px) {
     display: flex;
+    position: relative;
     width: 100%;
     height: 44px;
     justify-content: space-between;
     align-items: center;
-
-    position: relative;
   }
 `;
 
@@ -85,7 +84,7 @@ export const BackBtn = styled.button`
   border: 0;
   cursor: pointer;
 
-  @media (max-width: 524px) {
+  @media (width <= 524px) {
     display: block;
   }
 `;
@@ -148,9 +147,8 @@ export const Vote = styled.div`
 export const TransparentOverlay = styled.div`
   display: none;
 
-  @media (max-width: 524px) {
+  @media (width <= 524px) {
     display: block;
-    height: 106px;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -176,14 +174,14 @@ export const Votebtn = styled.button`
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
   @media (width <= 524px) {
+    display: block;
     width: calc(100% - 32px);
-    margin: 16px auto;
     height: 44px;
+    margin: 16px auto;
     margin: 16px 0;
 
     font-size: 15px;
     pointer-events: auto;
-    display: block;
   }
 `;
 

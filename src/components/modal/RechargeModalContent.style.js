@@ -15,7 +15,8 @@ export const CreditList = styled.div`
 export const Credit = styled.div`
   display: flex;
   padding: 18px 20px;
-  border: 1px solid ${({ selected }) => (selected ? "var(--orange-F96D69)" : "var(--white-F7F7F8)")};
+  border: 1px solid
+    ${({ selected }) => (selected ? "var(--color-primary)" : "var(--color-white-90)")};
   align-items: center;
   border-radius: 8px;
   cursor: pointer;

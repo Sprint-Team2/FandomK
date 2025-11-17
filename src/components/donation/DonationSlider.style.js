@@ -2,13 +2,15 @@ import { media } from "@/styles/media";
 import styled from "styled-components";
 
 export const SlideWrapper = styled.div`
-  position: relative;
   display: flex;
+  position: relative;
   align-items: center;
+
   @media ${media.desktop} {
     gap: 40px;
     width: 1200px;
   }
+
   @media ${media.desktopSlider} {
     gap: 40px;
   }
@@ -30,8 +32,8 @@ export const SlideTrack = styled.div`
 
 export const FundingCardWrapper = styled.div`
   display: flex;
-  width: 100%;
   overflow: hidden;
+  width: 100%;
 `;
 
 export const SlideArrow = styled.button`
@@ -40,7 +42,7 @@ export const SlideArrow = styled.button`
     $direction === "left" ? { left: "-80px" } : { right: "-80px", transform: "rotate(180deg)" }}
 
   &:disabled {
-    background: var(--gray-828282);
+    background: var(--color-gray-500);
   }
 
   @media ${media.desktop} {
@@ -50,8 +52,10 @@ export const SlideArrow = styled.button`
     width: 40px;
     height: 80px;
     border-radius: 8px;
+
     background-color: #1b1b1bcc;
   }
+
   @media ${media.desktopSlider} {
     position: absolute;
   }

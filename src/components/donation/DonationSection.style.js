@@ -3,11 +3,17 @@ import styled from "styled-components";
 
 export const Contaier = styled.section`
   padding-left: 24px;
+  margin-bottom: 40px;
+
+  @media ${media.tablet} {
+    margin-bottom: 60px;
+  }
 
   @media ${media.desktop} {
     width: 1200px;
     margin: 0 auto;
     padding-left: 0;
+    margin-bottom: 80px;
   }
 `;
 

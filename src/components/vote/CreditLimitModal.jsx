@@ -1,4 +1,4 @@
-import * as S from "./CreditLimitModal.style.js";
+import * as S from "./CreditLimitModal.style";
 
 const CreditLimitModal = ({ onClose }) => {
   return (

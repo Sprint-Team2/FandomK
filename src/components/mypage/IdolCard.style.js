@@ -27,12 +27,12 @@ export const CardContainer = styled.div`
 
 // 이미지 wrapper (외곽 border)
 export const ImageWrapper = styled.div`
+  display: flex;
   position: relative;
   width: ${(props) => WRAPPER_SIZES[props.$size]}px;
-  aspect-ratio: 1;
   border: 1.31px solid ${(props) => (props.$selected ? "#F96D69" : "#f96868")};
+  aspect-ratio: 1;
   border-radius: 50%;
-  display: flex;
   justify-content: center;
   align-items: center;
 `;
@@ -71,19 +71,20 @@ export const IdolImage = styled.img`
 
 // 삭제 버튼
 export const DeleteButton = styled.button`
+  display: flex;
   position: absolute;
   top: 0;
   right: 0;
   width: 31px;
   height: 31px;
-  background-color: #ffffff;
+  padding: 0;
   border: 2.8px solid #02000e;
+
+  background-color: #fff;
   border-radius: 50%;
-  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: 0;
 
   &:hover {
     opacity: 0.8;
@@ -112,15 +113,16 @@ export const InfoSection = styled.div`
 
 // 멤버 이름
 export const MemberName = styled.div`
-  font-size: 16px;
+  color: #fff;
   font-weight: 700;
-  color: #ffffff;
+  font-size: 16px;
 `;
 
 // 그룹 이름
 export const GroupName = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.6);
   padding: 0 12px;
+
+  color: rgb(255 255 255 / 60%);
+  font-weight: 400;
+  font-size: 14px;
 `;

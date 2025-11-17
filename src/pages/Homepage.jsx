@@ -1,13 +1,13 @@
+import useCreditContext from "@/app/contexts/CreditContext";
 import { useNavigate } from "react-router-dom";
-import imgStartBg from "../assets/imgs/home_start_bg.png";
-import imgSponsorBg from "../assets/imgs/home_sponsor_bg.png";
-import imgSponsorPhone from "../assets/imgs/home_sponsor_phone.png";
 import imgMonthlyBg from "../assets/imgs/home_monthly_bg.png";
 import imgMonthyPhone from "../assets/imgs/home_monthly_phone.png";
 import imgMyArtistBg from "../assets/imgs/home_my_artist_bg.png";
 import imgMyArtistPhone from "../assets/imgs/home_my_artist_phone.png";
+import imgSponsorBg from "../assets/imgs/home_sponsor_bg.png";
+import imgSponsorPhone from "../assets/imgs/home_sponsor_phone.png";
+import imgStartBg from "../assets/imgs/home_start_bg.png";
 import imgLogo from "../assets/imgs/logo.svg";
-import useCreditContext from "@/app/contexts/CreditContext";
 import * as S from "./Homepage.style";
 
 function Homepage() {
@@ -15,13 +15,16 @@ function Homepage() {
   const [_, actions] = useCreditContext();
 
   const goListPage = () => {
-    actions.resetCredit();
     navigate("/list");
+  };
+
+  const resetCredit = () => {
+    actions.resetCredit();
   };
 
   return (
     <S.Container>
-      <StartSection goListPage={goListPage} />
+      <StartSection onClick={{ goListPage, resetCredit }} />
       <SponsorSection />
       <MonthlySection />
       <MyArtistSection />
@@ -30,7 +33,7 @@ function Homepage() {
   );
 }
 
-const StartSection = ({ goListPage }) => {
+const StartSection = ({ onClick }) => {
   return (
     <S.FirstSection>
       <S.FirstSectionBox>
@@ -41,10 +44,23 @@ const StartSection = ({ goListPage }) => {
             <br />
             가장 <span>쉽게 덕질</span> 하는 방법
           </S.FirstSectionTitle>
-          <img src={imgLogo} alt="팬덤케이 로고" />
+          <img
+            src={imgLogo}
+            alt="팬덤케이 로고"
+            onClick={() => {
+              onClick.goListPage();
+            }}
+          />
         </S.LogoContainer>
         <img src={imgStartBg} alt="지금 시작하기" />
-        <S.StartButton onClick={goListPage}>지금 시작하기</S.StartButton>
+        <S.StartButton
+          onClick={() => {
+            onClick.goListPage();
+            onClick.resetCredit();
+          }}
+        >
+          지금 시작하기
+        </S.StartButton>
       </S.FirstSectionBox>
     </S.FirstSection>
   );

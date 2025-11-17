@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const ToastContainer = styled.div`
   position: absolute;
-  bottom: 20px;
   right: 20px;
-  max-width: 200px;
+  bottom: 20px;
+  z-index: 2000;
   padding: 15px;
-  background-color: #ffffffcc;
+
+  background-color: #fffc;
+  max-width: 200px;
   border-radius: 8px;
   pointer-events: none;
-  z-index: 2000;
   transition: all 0.5s;
   opacity: ${({ isToasting }) => (isToasting ? 1 : 0.1)};
   transform: translateY(${({ isToasting }) => (isToasting ? 0 : 100)}%);
@@ -17,12 +18,12 @@ export const ToastContainer = styled.div`
 
 export const ToastTitle = styled.h2`
   color: black;
-  font-size: 12px;
   font-weight: 600;
+  font-size: 12px;
 `;
 
 export const ToastMessage = styled.p`
   color: #333;
-  font-size: 14px;
   font-weight: 500;
+  font-size: 14px;
 `;

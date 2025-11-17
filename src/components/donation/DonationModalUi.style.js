@@ -24,16 +24,16 @@ export const TitleWrapper = styled.div`
 `;
 
 export const SubTitle = styled.h4`
-  font-size: 1.2rem;
+  color: #666;
   font-weight: 400;
+  font-size: 1.2rem;
   line-height: 1.8rem;
-  color: #666666;
 `;
 
 export const Title = styled.h4`
-  color: var(--white-F7F7F8);
-  font-size: 1.4rem;
+  color: var(--color-white-90);
   font-weight: 500;
+  font-size: 1.4rem;
 `;
 
 export const FormContainer = styled.form`
@@ -44,18 +44,19 @@ export const FormContainer = styled.form`
 
 export const InputWrapper = styled.div`
   position: relative;
-  border: solid 1px var(--white-FFFFFF);
+  border: solid 1px var(--color-white-100);
   border-radius: 8px;
   padding: 16px;
   padding-right: 48px;
 
   input {
-    padding: 0;
     width: 231px;
     height: 26px;
-    color: var(--white-FFFFFF);
-    font-size: 2rem;
+    padding: 0;
+
+    color: var(--color-white-100);
     font-weight: 700;
+    font-size: 2rem;
     line-height: 2.6rem;
   }
 
@@ -72,8 +73,9 @@ export const InputWrapper = styled.div`
 
 export const MessageBox = styled.div`
   margin-top: 8px;
-  font-size: 1.2rem;
+
   font-weight: 500;
+  font-size: 1.2rem;
   color: #ff2626;
 
   ${({ $color }) => $color && { color: $color }}
@@ -82,13 +84,14 @@ export const MessageBox = styled.div`
 export const SubmitButton = styled.button`
   width: 295px;
   height: 42px;
-  border-radius: 4px;
-  background: linear-gradient(to right, #f86f65, var(--pink-FE5493));
-  font-size: 1.4rem;
+
   font-weight: 700;
+  font-size: 1.4rem;
   line-height: 2.6rem;
+  border-radius: 4px;
+  background: linear-gradient(to right, #f86f65, var(--color-primary));
 
   &:disabled {
-    background: var(--gray-828282);
+    background: var(--color-gray-500);
   }
 `;

@@ -217,7 +217,7 @@ export const SectionImg1 = styled.img`
   width: 240px;
   height: 520.25px;
   margin-top: 47px;
-  animation-name: phoneAni;
+  animation-name: phone-ani;
   animation-duration: 1.2s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
@@ -233,15 +233,17 @@ export const SectionImg1 = styled.img`
     margin-top: 60px;
   }
 
-  @keyframes phoneAni {
+  @keyframes phone-ani {
     0% {
-      transform: translateY(0px);
+      transform: translateY(0);
     }
+
     50% {
       transform: translateY(10px);
     }
+
     100% {
-      transform: translateY(0px);
+      transform: translateY(0);
     }
   }
 `;

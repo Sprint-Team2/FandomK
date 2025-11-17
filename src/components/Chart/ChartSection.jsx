@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import client from "../../api/client";
+import ListItem from "../ListItem/ListItem";
+import VoteSection from "../vote/VoteSection";
 import * as S from "./ChartSection.styles";
-import ListItem from "../listItem/ListItem";
-import VoteSection from "../Vote/VoteSection";
-import client from "../../api/client.js";
 
 const BREAKPOINT = 744;
 
@@ -17,26 +17,25 @@ const ChartSection = () => {
 
   const [list, setList] = useState([]);
 
-  const loadIdols = async () => {
-    const res = await client.get("/idols");
-    const idols = res.data.list;
-
-    const filtered = idols.filter((i) => i.gender === gender);
-
-    const sorted = filtered
-      .sort((a, b) => b.totalVotes - a.totalVotes)
-      .map((i, idx) => ({
-        id: i.id,
-        name: i.name,
-        img: i.profilePicture,
-        votes: i.totalVotes,
-        rank: idx + 1,
-      }));
-
-    setList(sorted);
-  };
-
   useEffect(() => {
+    const loadIdols = async () => {
+      const res = await client.get("/idols");
+      const idols = res.data.list;
+
+      const filtered = idols.filter((i) => i.gender === gender);
+
+      const sorted = filtered
+        .sort((a, b) => b.totalVotes - a.totalVotes)
+        .map((i, idx) => ({
+          id: i.id,
+          name: i.name,
+          img: i.profilePicture,
+          votes: i.totalVotes,
+          rank: idx + 1,
+        }));
+
+      setList(sorted);
+    };
     loadIdols();
   }, [gender]);
 
