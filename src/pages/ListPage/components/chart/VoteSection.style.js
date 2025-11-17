@@ -24,7 +24,7 @@ export const Modal = styled.div`
   margin: 0 auto;
   padding: 24px;
 
-  color: #fff;
+  color: var(--color-white-100);
   max-width: 524px;
   background: #181d26;
   flex-direction: column;

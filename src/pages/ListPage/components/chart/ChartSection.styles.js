@@ -1,4 +1,5 @@
 import frame from "@/assets/Chart.png";
+import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
 export const Wrap = styled.section`
@@ -43,24 +44,6 @@ export const RightArea = styled.div`
   gap: 10px;
 `;
 
-export const VoteCta = styled.button`
-  display: flex;
-  width: 128px;
-  height: 32px;
-  border: 0;
-  line-height: 32px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
-  cursor: pointer;
-  background: linear-gradient(90deg, rgb(248 111 101 / 100%) 0%, rgb(254 84 147 / 100%) 100%);
-  white-space: nowrap;
-
-  &:hover {
-    opacity: 0.9;
-  }
-`;
-
 export const ChartImg = styled.div`
   width: 24px;
   height: 24px;
@@ -84,7 +67,6 @@ export const BoardHead = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 48px;
-  background: #1b2029;
 `;
 
 export const HeadTab = styled.button`
@@ -92,10 +74,9 @@ export const HeadTab = styled.button`
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
-  background: ${({ $active }) => ($active ? "rgba(255, 255, 255, 0.1)" : "")};
-  color: ${({ $active }) => ($active ? "#fff" : "#828282")};
-  border-bottom: ${({ $active }) =>
-    $active ? "2px solid rgba(255, 255, 255, 1)" : "0.5px solid transparent"};
+  background: ${({ $active }) => ($active ? hexToRgba("#1b2029") : "")};
+  color: ${({ $active }) => ($active ? "var(--color-white-100)" : hexToRgba("#828282"))};
+  border-bottom: ${({ $active }) => ($active ? `2px solid var(--color-white-100)` : "none")};
   transition:
     background 0.2s ease,
     color 0.2s ease;
@@ -113,7 +94,6 @@ export const Grid = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  border-top: 1px solid rgb(225 225 225 / 8%);
 
   @media (width <= 744px) {
     grid-template-columns: 1fr;
