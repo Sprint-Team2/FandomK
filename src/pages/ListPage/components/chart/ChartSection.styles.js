@@ -3,9 +3,7 @@ import styled from "styled-components";
 
 export const Wrap = styled.section`
   width: 100%;
-  padding: 80px 0 0;
-  background: #000;
-  color: #fff;
+  padding: 80px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +78,6 @@ export const ChartVote = styled.p`
 export const Board = styled.div`
   width: 100%;
   max-width: 1200px;
-  background: #000;
 `;
 
 export const BoardHead = styled.div`
@@ -95,7 +92,7 @@ export const HeadTab = styled.button`
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
-  background: ${({ $active }) => ($active ? "rgba(255, 255, 255, 0.1)" : "#000")};
+  background: ${({ $active }) => ($active ? "rgba(255, 255, 255, 0.1)" : "")};
   color: ${({ $active }) => ($active ? "#fff" : "#828282")};
   border-bottom: ${({ $active }) =>
     $active ? "2px solid rgba(255, 255, 255, 1)" : "0.5px solid transparent"};
@@ -116,7 +113,6 @@ export const Grid = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  background: #000;
   border-top: 1px solid rgb(225 225 225 / 8%);
 
   @media (width <= 744px) {
@@ -126,11 +122,13 @@ export const Grid = styled.div`
 `;
 
 export const Col = styled.div`
-  background: #000;
-
   @media (width >= 744px) {
     font-size: 16px;
     padding: 24px 0 0;
+  }
+
+  &:last-child {
+    border-bottom: none; /* 마지막만 제거 */
   }
 
   padding: 0;

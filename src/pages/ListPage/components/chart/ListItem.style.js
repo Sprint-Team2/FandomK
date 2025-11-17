@@ -6,8 +6,7 @@ export const Item = styled.div`
   gap: 10px;
   height: 70px;
   padding: ${({ $variant }) => ($variant === "vote" ? "0 12px" : "0")};
-  border-bottom: ${({ $variant }) =>
-    $variant === "chart" ? "none" : "1px solid rgba(225, 225, 225, 0.1)"};
+  border-bottom: 1px solid rgb(225 225 225 / 10%);
 
   cursor: ${({ $variant }) => ($variant === "vote" ? "pointer" : "default")};
   transition: ${({ $variant }) => ($variant === "vote" ? "background 0.2s ease" : "none")};
