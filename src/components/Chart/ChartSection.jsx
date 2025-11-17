@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./ChartSection.styles";
-import ListItem from "../listItem/ListItem.jsx";
-import VoteSection from "../Vote/VoteSection.jsx";
+import ListItem from "../listItem/ListItem";
+import VoteSection from "../Vote/VoteSection";
 import client from "../../api/client.js";
 
 const BREAKPOINT = 744;
@@ -99,7 +99,10 @@ const ChartSection = () => {
       <S.ChartHeader>
         <S.H2>이달의 차트</S.H2>
         <S.RightArea>
-          <S.VoteCta type="button" onClick={() => setIsVoteOpen(true)} />
+          <S.VoteCta type="button" onClick={() => setIsVoteOpen(true)}>
+            <S.ChartImg />
+            <S.ChartVote>차트 투표하기</S.ChartVote>
+          </S.VoteCta>
         </S.RightArea>
       </S.ChartHeader>
 

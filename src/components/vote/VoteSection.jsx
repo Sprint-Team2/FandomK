@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./VoteSection.style.js";
-import ListItem from "../listItem/ListItem.jsx";
+import ListItem from "../listItem/ListItem";
 import client from "../../api/client.js";
 import { creditStorage } from "@/storage/credit.storage.js";
+import CreditLimitModal from "./CreditLimitModal.jsx";
 
 const VoteSection = ({ onClose, initialGender = "female" }) => {
   const [gender] = useState(initialGender);
   const [list, setList] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
+
+  const [isCreditModalOpen, setIsCreditModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchIdols = async () => {
@@ -38,7 +41,7 @@ const VoteSection = ({ onClose, initialGender = "female" }) => {
     const currentCredit = creditStorage.get() || 0;
 
     if (currentCredit < 1000) {
-      alert("크레딧이 부족합니다. (필요 크레딧: 1000)");
+      setIsCreditModalOpen(true);
       return;
     }
 
@@ -55,42 +58,48 @@ const VoteSection = ({ onClose, initialGender = "female" }) => {
     setList(newList);
     setSelectedId(null);
   };
+
   return (
-    <S.Container>
-      <S.Modal>
-        <S.MobileHeader>
-          <S.BackBtn onClick={onClose} aria-label="뒤로" />
-          <S.Title>{gender === "female" ? "이달의 여자 아이돌" : "이달의 남자 아이돌"}</S.Title>
-          <S.Rbox />
-        </S.MobileHeader>
+    <>
+      <S.Container>
+        <S.Modal>
+          <S.MobileHeader>
+            <S.BackBtn onClick={onClose} aria-label="뒤로" />
+            <S.Title>{gender === "female" ? "이달의 여자 아이돌" : "이달의 남자 아이돌"}</S.Title>
+            <S.Rbox />
+          </S.MobileHeader>
 
-        <S.Header>
-          <S.Title>{gender === "female" ? "이달의 여자 아이돌" : "이달의 남자 아이돌"}</S.Title>
-          <S.CloseBtn onClick={onClose} />
-        </S.Header>
+          <S.Header>
+            <S.Title>{gender === "female" ? "이달의 여자 아이돌" : "이달의 남자 아이돌"}</S.Title>
+            <S.CloseBtn onClick={onClose} />
+          </S.Header>
 
-        <S.List>
-          {list.map((c) => (
-            <ListItem
-              key={c.id}
-              {...c}
-              selected={selectedId === c.id}
-              onSelect={setSelectedId}
-              variant="vote"
-            />
-          ))}
-        </S.List>
+          <S.List>
+            {list.map((c) => (
+              <ListItem
+                key={c.id}
+                {...c}
+                selected={selectedId === c.id}
+                onSelect={setSelectedId}
+                variant="vote"
+              />
+            ))}
+          </S.List>
 
-        <S.Vote>
-          <S.Votebtn disabled={!selectedId} onClick={submit}>
-            투표하기
-          </S.Votebtn>
-          <S.VoteNotice>
-            투표하는 데 <S.Credit>1000</S.Credit> 크레딧이 소모됩니다.
-          </S.VoteNotice>
-        </S.Vote>
-      </S.Modal>
-    </S.Container>
+          <S.Vote>
+            <S.Votebtn disabled={!selectedId} onClick={submit}>
+              투표하기
+            </S.Votebtn>
+            <S.VoteNotice>
+              투표하는 데 <S.Credit>1000</S.Credit> 크레딧이 소모됩니다.
+            </S.VoteNotice>
+          </S.Vote>
+        </S.Modal>
+      </S.Container>
+
+      {isCreditModalOpen && <CreditLimitModal onClose={() => setIsCreditModalOpen(false)} />}
+    </>
   );
 };
+
 export default VoteSection;

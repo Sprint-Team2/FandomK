@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import frame from "../../assets/Frame 33584.png";
+import frame from "../../assets/Chart.png";
 
 export const Wrap = styled.section`
   width: 100%;
@@ -9,11 +9,7 @@ export const Wrap = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (min-width: 745px) and (max-width: 1199px) {
-    padding: 0px 24px;
-  }
-
-  @media (max-width: 744px) {
+  @media (max-width: 1199px) {
     padding: 0px 24px;
   }
 `;
@@ -48,17 +44,34 @@ export const RightArea = styled.div`
 `;
 
 export const VoteCta = styled.button`
+  display: flex;
   width: 128px;
   height: 32px;
   border: 0;
+  line-height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
   cursor: pointer;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url(${frame});
+  background: linear-gradient(90deg, rgba(248, 111, 101, 1) 0%, rgba(254, 84, 147, 1) 100%);
   white-space: nowrap;
   &:hover {
     opacity: 0.9;
   }
+`;
+
+export const ChartImg = styled.div`
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(${frame});
+`;
+
+export const ChartVote = styled.p`
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 700;
 `;
 
 export const Board = styled.div`
@@ -111,13 +124,12 @@ export const Grid = styled.div`
 
 export const Col = styled.div`
   background: #000;
-  font-size: 16px;
-  padding: 24px 0 0;
-
-  @media (max-width: 744px) {
-    padding: 0;
-    font-size: 24px;
+  @media (min-width: 744px) {
+    font-size: 16px;
+    padding: 24px 0 0;
   }
+  padding: 0;
+  font-size: 24px;
 `;
 
 export const MoreArea = styled.div`
