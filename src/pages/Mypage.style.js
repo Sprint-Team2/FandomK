@@ -89,13 +89,17 @@ export const IdolsGridContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0; /* 모바일: 화살표 없음 */
+  overflow: hidden; /* 모바일 슬라이드용 */
+  width: 100%;
 
   @media ${media.tablet} {
     gap: 24px;
+    overflow: visible;
   }
 
   @media ${media.desktop} {
     gap: 32px;
+    overflow: visible;
   }
 `;
 
@@ -125,17 +129,34 @@ export const ArrowButton = styled.button`
 
 // 아이돌 그리드 - 반응형 (모바일 3열, 타블렛 4열, 데스크톱 8열)
 export const IdolsGrid = styled.div`
+  /* 모바일: 3*2 그리드를 유지하면서 가로 슬라이드 */
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 모바일: 3*2 */
-  gap: 32px 20px; /* 행간 32px, 열간 20px */
+  gap: 32px 20px;
   flex: 1;
+  will-change: ${(props) => (props.$isMobile ? "transform" : "auto")};
+  
+  /* 모바일: 2행 고정, 열은 자동으로 늘어남 */
+  grid-template-rows: ${(props) => (props.$isMobile ? "repeat(2, 1fr)" : "none")};
+  grid-template-columns: ${(props) => (props.$isMobile ? "none" : "repeat(3, 1fr)")};
+  grid-auto-flow: ${(props) => (props.$isMobile ? "column" : "row")};
+  grid-auto-columns: ${(props) => (props.$isMobile ? "128px" : "auto")}; /* 카드 너비 */
 
   @media ${media.tablet} {
+    grid-template-rows: none;
     grid-template-columns: repeat(4, 1fr); /* 타블렛: 4*2 */
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    gap: 32px 20px;
+    will-change: auto;
   }
 
   @media ${media.desktop} {
+    grid-template-rows: none;
     grid-template-columns: repeat(8, 1fr); /* 데스크톱: 8*2 */
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    gap: 32px 20px;
+    will-change: auto;
   }
 `;
 
@@ -144,10 +165,10 @@ export const AddButton = styled.button`
   width: 255px;
   height: 48px;
   margin-top: 48px;
-  background: linear-gradient(90deg, var(--orange-F96D69) 0%, var(--pink-FE5493) 100%);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   border: none;
   border-radius: 24px;
-  color: var(--white-FFFFFF);
+  color: var(--color-white-100);
   cursor: pointer;
   align-self: center;
   display: flex;
