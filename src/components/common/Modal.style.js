@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  position: absolute;
-  z-index: 999;
-
-  background-color: #000c;
+  position: fixed;
   inset: 0;
   justify-content: center;
   align-items: center;
