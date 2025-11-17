@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/styles/media";
 
 // 전체 컨테이너 - max-width 1200px, flex column, gap 40px
 export const MypageContainer = styled.div`
@@ -7,8 +8,16 @@ export const MypageContainer = styled.div`
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 76px;
+  padding: 76px 20px 40px;
   min-height: 100vh; /* 항상 최소 높이 확보로 스크롤바 공간 유지 */
+
+  @media ${media.tablet} {
+    padding: 76px 40px 40px;
+  }
+
+  @media ${media.desktop} {
+    padding: 76px 0 40px;
+  }
 `;
 
 // 섹션 공통
@@ -24,19 +33,39 @@ export const AddIdolsSection = styled.section`
 
 // 섹션 제목 - 아래 마진 32px
 export const SectionTitle = styled.h2`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--white-FFFFFF);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+
+  @media ${media.tablet} {
+    font-size: 20px;
+    margin-bottom: 28px;
+  }
+
+  @media ${media.desktop} {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
 `;
 
 // 내가 관심있는 아이돌 리스트
 export const FavoriteIdolsList = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 16px;
   min-height: 100px;
+
+  @media ${media.tablet} {
+    gap: 14px;
+    padding: 18px;
+  }
+
+  @media ${media.desktop} {
+    gap: 16px;
+    padding: 20px;
+  }
 `;
 
 // 빈 상태 메시지
@@ -59,7 +88,15 @@ export const Divider = styled.div`
 export const IdolsGridContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 0; /* 모바일: 화살표 없음 */
+
+  @media ${media.tablet} {
+    gap: 24px;
+  }
+
+  @media ${media.desktop} {
+    gap: 32px;
+  }
 `;
 
 // 화살표 버튼
@@ -86,12 +123,20 @@ export const ArrowButton = styled.button`
   }
 `;
 
-// 아이돌 그리드 - 8열 2행 고정, 행간 32px
+// 아이돌 그리드 - 반응형 (모바일 3열, 타블렛 4열, 데스크톱 8열)
 export const IdolsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 모바일: 3*2 */
   gap: 32px 20px; /* 행간 32px, 열간 20px */
   flex: 1;
+
+  @media ${media.tablet} {
+    grid-template-columns: repeat(4, 1fr); /* 타블렛: 4*2 */
+  }
+
+  @media ${media.desktop} {
+    grid-template-columns: repeat(8, 1fr); /* 데스크톱: 8*2 */
+  }
 `;
 
 // 추가하기 버튼 - 255x48px, radius 24px, 위 마진 48px

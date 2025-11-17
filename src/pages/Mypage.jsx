@@ -7,9 +7,38 @@ import { getRecommendations } from "@/api/recommendationClient";
 import { idolsStorage } from "@/storage/idols.storage";
 import * as S from "./Mypage.style";
 
-const IDOLS_PER_PAGE = 16; // 8열 2행
-
 const Mypage = () => {
+  // 화면 크기에 따른 페이지당 아이돌 수 및 추천 개수
+  const [idolsPerPage, setIdolsPerPage] = useState(16); // 데스크톱 기본값: 8*2
+  const [recommendCount, setRecommendCount] = useState(8);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 미디어 쿼리 감지
+  useEffect(() => {
+    const updateLayout = () => {
+      const isTablet = window.matchMedia("(min-width: 744px) and (max-width: 1199px)").matches;
+      const isDesktop = window.matchMedia("(min-width: 1200px)").matches;
+
+      if (isDesktop) {
+        setIdolsPerPage(16); // 8*2
+        setRecommendCount(8);
+        setIsMobile(false);
+      } else if (isTablet) {
+        setIdolsPerPage(8); // 4*2
+        setRecommendCount(8);
+        setIsMobile(false);
+      } else {
+        // 모바일
+        setIdolsPerPage(6); // 3*2
+        setRecommendCount(6);
+        setIsMobile(true);
+      }
+    };
+
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
+  }, []);
   // 상태 관리: 사용자가 선택한 관심 아이돌 ID 목록
   const [selectedIdols, setSelectedIdols] = useState(() => {
     // 초기값을 로컬스토리지에서 불러오기
@@ -70,7 +99,7 @@ const Mypage = () => {
       console.log("🤖 AI 추천 요청 시작:", selectedIdols);
       setIsLoadingRecommendations(true);
       try {
-        const result = await getRecommendations(selectedIdols, 8);
+        const result = await getRecommendations(selectedIdols, recommendCount);
         console.log("✅ AI 추천 응답:", result);
 
         const { recommended_ids } = result;
@@ -94,7 +123,7 @@ const Mypage = () => {
     };
 
     fetchRecommendations();
-  }, [selectedIdols, allIdols]);
+  }, [selectedIdols, allIdols, recommendCount]);
 
   // 선택된 아이돌 객체 배열 가져오기
   const favoriteIdols = allIdols.filter((idol) => selectedIdols.includes(idol.id));
@@ -106,19 +135,19 @@ const Mypage = () => {
   const availableIdolsWithRecommendations =
     selectedIdols.length > 0 && recommendedIdols.length > 0
       ? [
-          ...recommendedIdols.slice(0, 8), // AI 추천 최대 8개
+          ...recommendedIdols.slice(0, recommendCount), // AI 추천 (화면 크기에 따라 조정)
           ...availableIdols.filter((idol) => !recommendedIdols.some((rec) => rec.id === idol.id)),
         ]
       : availableIdols;
 
   // 현재 페이지의 아이돌들
   const currentPageIdols = availableIdolsWithRecommendations.slice(
-    currentPage * IDOLS_PER_PAGE,
-    (currentPage + 1) * IDOLS_PER_PAGE
+    currentPage * idolsPerPage,
+    (currentPage + 1) * idolsPerPage
   );
 
   // 전체 페이지 수
-  const totalPages = Math.ceil(availableIdolsWithRecommendations.length / IDOLS_PER_PAGE);
+  const totalPages = Math.ceil(availableIdolsWithRecommendations.length / idolsPerPage);
 
   // 관심 아이돌 삭제 핸들러
   const handleRemoveIdol = (idolId) => {
@@ -207,10 +236,12 @@ const Mypage = () => {
         <S.AddIdolsSection>
           <S.SectionTitle>관심 있는 아이돌들을 추가해보세요.</S.SectionTitle>
           <S.IdolsGridContainer>
-            {/* 좌측 화살표 버튼 */}
-            <S.ArrowButton onClick={handlePrevPage} disabled={currentPage === 0}>
-              <MypageArrow />
-            </S.ArrowButton>
+            {/* 좌측 화살표 버튼 - 모바일에서 숨김 */}
+            {!isMobile && (
+              <S.ArrowButton onClick={handlePrevPage} disabled={currentPage === 0}>
+                <MypageArrow />
+              </S.ArrowButton>
+            )}
 
             {/* 아이돌 그리드 */}
             <S.IdolsGrid>
@@ -230,14 +261,16 @@ const Mypage = () => {
               ))}
             </S.IdolsGrid>
 
-            {/* 우측 화살표 버튼 */}
-            <S.ArrowButton
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages - 1}
-              $isRight
-            >
-              <MypageArrow />
-            </S.ArrowButton>
+            {/* 우측 화살표 버튼 - 모바일에서 숨김 */}
+            {!isMobile && (
+              <S.ArrowButton
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages - 1}
+                $isRight
+              >
+                <MypageArrow />
+              </S.ArrowButton>
+            )}
           </S.IdolsGridContainer>
 
           {/* 추가하기 버튼 */}
