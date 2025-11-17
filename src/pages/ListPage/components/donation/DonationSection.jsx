@@ -20,7 +20,6 @@ const DonationSection = () => {
       const res = await getDonationList({ pageSize: PAGE_SIZE });
       setList(res.list);
       setCursor(res.nextCursor);
-      console.log(res);
     };
     fetchInitial();
   }, []);

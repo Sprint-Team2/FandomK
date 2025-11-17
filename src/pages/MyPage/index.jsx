@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import IdolCard from "@/components/mypage/IdolCard";
+import { getIdolList } from "@/api/idolsClient";
 import MypageAdd from "@/assets/svg/MypageAddSvg";
 import MypageArrow from "@/assets/svg/MypageArrowSvg";
-import { getIdolList } from "@/api/idolsClient";
 import { idolsStorage } from "@/storage/idols.storage";
-import * as S from "./Mypage.style";
+import { useEffect, useState } from "react";
+import IdolCard from "./components/IdolCard";
+import * as S from "./index.style";
 
 const IDOLS_PER_PAGE = 16; // 8열 2행
 
-const Mypage = () => {
+const MyPage = () => {
   // 상태 관리: 사용자가 선택한 관심 아이돌 ID 목록
   const [selectedIdols, setSelectedIdols] = useState(() => {
     // 초기값을 로컬스토리지에서 불러오기
@@ -198,4 +198,4 @@ const Mypage = () => {
   );
 };
 
-export default Mypage;
+export default MyPage;

@@ -1,6 +1,7 @@
+import closePng from "@/assets/btn_delete_24px.png";
+import credit_icon from "@/assets/credit_113px.png";
 import styled from "styled-components";
-import credit_icon from "../../assets/credit_113px.png";
-import closePng from "../../assets/btn_delete_24px.png";
+
 export const Overlay = styled.div`
   display: flex;
   position: fixed;

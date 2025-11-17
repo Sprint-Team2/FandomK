@@ -1,9 +1,9 @@
-import { useState } from "react";
 import useCreditContext from "@/app/contexts/CreditContext";
-import CreditSvg from "../../assets/svg/CreditSvg";
-import RadioOnSvg from "../../assets/svg/RadioOnSvg";
-import RadioOffSvg from "../../assets/svg/RadioOffSvg";
-import CreditWhite from "../../assets/svg/CreditWhiteSvg";
+import { useState } from "react";
+import CreditSvg from "../../../../assets/svg/CreditSvg";
+import CreditWhite from "../../../../assets/svg/CreditWhiteSvg";
+import RadioOffSvg from "../../../../assets/svg/RadioOffSvg";
+import RadioOnSvg from "../../../../assets/svg/RadioOnSvg";
 import * as S from "./RechargeModalContent.style";
 
 const CREDITS = [100, 500, 1000];

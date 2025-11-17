@@ -1,16 +1,17 @@
+import frame from "@/assets/Chart.png";
 import styled from "styled-components";
-import frame from "../../assets/Chart.png";
 
 export const Wrap = styled.section`
   width: 100%;
-  padding: 80px 0px 0px;
+  padding: 80px 0 0;
   background: #000;
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width: 1199px) {
-    padding: 0px 24px;
+
+  @media (width <= 1199px) {
+    padding: 0 24px;
   }
 `;
 
@@ -23,7 +24,7 @@ export const ChartHeader = styled.div`
   gap: 12px;
   margin-bottom: 24px;
 
-  @media (max-width: 744px) {
+  @media (width <= 744px) {
     margin-bottom: 16px;
   }
 `;
@@ -32,7 +33,8 @@ export const H2 = styled.h2`
   margin: 0;
   font-size: 24px;
   font-weight: 700;
-  @media (max-width: 744px) {
+
+  @media (width <= 744px) {
     font-size: 20px;
   }
 `;
@@ -53,8 +55,9 @@ export const VoteCta = styled.button`
   align-items: center;
   border-radius: 3px;
   cursor: pointer;
-  background: linear-gradient(90deg, rgba(248, 111, 101, 1) 0%, rgba(254, 84, 147, 1) 100%);
+  background: linear-gradient(90deg, rgb(248 111 101 / 100%) 0%, rgb(254 84 147 / 100%) 100%);
   white-space: nowrap;
+
   &:hover {
     opacity: 0.9;
   }
@@ -114,9 +117,9 @@ export const Grid = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   background: #000;
-  border-top: 1px solid rgba(225, 225, 225, 0.08);
+  border-top: 1px solid rgb(225 225 225 / 8%);
 
-  @media (max-width: 744px) {
+  @media (width <= 744px) {
     grid-template-columns: 1fr;
     gap: 0;
   }
@@ -124,10 +127,12 @@ export const Grid = styled.div`
 
 export const Col = styled.div`
   background: #000;
-  @media (min-width: 744px) {
+
+  @media (width >= 744px) {
     font-size: 16px;
     padding: 24px 0 0;
   }
+
   padding: 0;
   font-size: 24px;
 `;
@@ -143,7 +148,7 @@ export const MoreBtn = styled.button`
   height: 46px;
   background: #222734;
   color: #fff;
-  border: 1px solid rgba(241, 238, 249, 0.8);
+  border: 1px solid rgb(241 238 249 / 80%);
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;

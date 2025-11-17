@@ -1,9 +1,9 @@
-import { useState } from "react";
 import useCreditContext from "@/app/contexts/CreditContext";
-import CreditSvg from "../../assets/svg/CreditSvg";
-import Modal from "../common/Modal";
-import RechargeModalContent from "../modal/RechargeModalContent";
+import { useState } from "react";
+import CreditSvg from "../../../../assets/svg/CreditSvg";
+import Modal from "../../../../components/common/Modal";
 import * as S from "./MyCredit.style";
+import RechargeModalContent from "./RechargeModalContent";
 
 const MyCredit = () => {
   const [showRechargeModal, setShowRechargeModal] = useState(false);

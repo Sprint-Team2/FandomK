@@ -1,6 +1,6 @@
+import closePng from "@/assets/btn_delete_24px.png";
+import backPng from "@/assets/icj_arrow_left2.png";
 import styled from "styled-components";
-import closePng from "../../assets/btn_delete_24px.png";
-import backPng from "../../assets/icj_arrow_left2.png";
 
 export const Container = styled.div`
   display: grid;

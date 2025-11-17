@@ -1,5 +1,5 @@
 import creditImg from "@/assets/imgs/credit.png";
-import Modal from "../common/Modal";
+import Modal from "@/components/common/Modal";
 import * as S from "./DonationModalUi.style";
 
 const DonationModalUi = ({

@@ -1,14 +1,14 @@
 import useCreditContext from "@/app/contexts/CreditContext";
+import imgMonthlyBg from "@/assets/imgs/home_monthly_bg.png";
+import imgMonthyPhone from "@/assets/imgs/home_monthly_phone.png";
+import imgMyArtistBg from "@/assets/imgs/home_my_artist_bg.png";
+import imgMyArtistPhone from "@/assets/imgs/home_my_artist_phone.png";
+import imgSponsorBg from "@/assets/imgs/home_sponsor_bg.png";
+import imgSponsorPhone from "@/assets/imgs/home_sponsor_phone.png";
+import imgStartBg from "@/assets/imgs/home_start_bg.png";
+import imgLogo from "@/assets/imgs/logo.svg";
 import { useNavigate } from "react-router-dom";
-import imgMonthlyBg from "../assets/imgs/home_monthly_bg.png";
-import imgMonthyPhone from "../assets/imgs/home_monthly_phone.png";
-import imgMyArtistBg from "../assets/imgs/home_my_artist_bg.png";
-import imgMyArtistPhone from "../assets/imgs/home_my_artist_phone.png";
-import imgSponsorBg from "../assets/imgs/home_sponsor_bg.png";
-import imgSponsorPhone from "../assets/imgs/home_sponsor_phone.png";
-import imgStartBg from "../assets/imgs/home_start_bg.png";
-import imgLogo from "../assets/imgs/logo.svg";
-import * as S from "./Homepage.style";
+import * as S from "./index.style";
 
 function Homepage() {
   const navigate = useNavigate();

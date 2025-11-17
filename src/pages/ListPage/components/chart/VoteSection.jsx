@@ -1,8 +1,8 @@
+import client from "@/api/client";
 import { creditStorage } from "@/storage/credit.storage";
 import { useEffect, useState } from "react";
-import client from "../../api/client";
-import ListItem from "../ListItem/ListItem";
 import CreditLimitModal from "./CreditLimitModal";
+import ListItem from "./ListItem";
 import * as S from "./VoteSection.style";
 
 const VoteSection = ({ onClose, initialGender = "female" }) => {
