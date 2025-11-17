@@ -1,5 +1,6 @@
 import closePng from "@/assets/btn_delete_24px.png";
 import credit_icon from "@/assets/credit_113px.png";
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -38,8 +39,7 @@ export const Message = styled.p`
   margin-top: 31px;
 
   color: var(--color-white-100);
-  font-size: 16px;
-  line-height: 1.5;
+  ${TYPO.body16Medium}
 
   span {
     color: ${hexToRgba("#f77")};

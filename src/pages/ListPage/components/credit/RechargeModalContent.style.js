@@ -1,3 +1,4 @@
+import { TYPO } from "@/styles/typography";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -23,8 +24,7 @@ export const Credit = styled.div`
 
   & > div {
     color: var(--color-white-100);
-    font-weight: 700;
-    font-size: 20px;
+    ${TYPO.title20Bold}
     flex: 1;
   }
 `;

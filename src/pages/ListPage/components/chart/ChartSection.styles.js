@@ -1,4 +1,5 @@
 import frame from "@/assets/Chart.png";
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -30,8 +31,7 @@ export const ChartHeader = styled.div`
 
 export const H2 = styled.h2`
   margin: 0;
-  font-size: 24px;
-  font-weight: 700;
+  ${TYPO.titleMd}
 
   @media (width <= 744px) {
     font-size: 20px;
@@ -54,8 +54,7 @@ export const ChartImg = styled.div`
 
 export const ChartVote = styled.p`
   margin-left: 4px;
-  font-size: 13px;
-  font-weight: 700;
+  ${TYPO.caption14Bold};
 `;
 
 export const Board = styled.div`
@@ -71,8 +70,7 @@ export const BoardHead = styled.div`
 
 export const HeadTab = styled.button`
   appearance: none;
-  font-size: 14px;
-  font-weight: 400;
+  ${TYPO.body14Medium};
   cursor: pointer;
   background: ${({ $active }) => ($active ? hexToRgba("#1b2029") : "")};
   color: ${({ $active }) => ($active ? "var(--color-white-100)" : hexToRgba("#828282"))};
@@ -126,10 +124,9 @@ export const MoreBtn = styled.button`
   height: 46px;
   background: ${hexToRgba("#222734")};
   color: ${hexToRgba("#fff")};
-  border: 1px solid rgb(241 238 249 / 80%);
+  border: 1px solid ${hexToRgba("#F1EEF9CC")};
   border-radius: 3px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
+  ${TYPO.caption14Bold}
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 `;

@@ -1,4 +1,5 @@
 import { media } from "@/styles/media";
+import { TYPO } from "@/styles/typography";
 import styled from "styled-components";
 
 export const Contaier = styled.section`
@@ -20,9 +21,7 @@ export const Contaier = styled.section`
 export const DonationTitle = styled.h2`
   margin-bottom: 16px;
 
-  font-weight: 700;
-  font-size: 1.6rem;
-  line-height: 2.6rem;
+  ${TYPO.title18SemiBold}
 
   @media ${media.tablet} {
     font-size: 2rem;

@@ -1,3 +1,4 @@
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -25,7 +26,7 @@ export const Rank = styled.span`
   width: 18px;
 
   color: var(--color-primary);
-  font-size: 14px;
+  ${TYPO.body14Medium}
   text-align: right;
   opacity: 0.9;
 `;
@@ -51,7 +52,7 @@ export const ListVotes = styled.p`
   margin: 0 0 0 auto;
 
   color: ${hexToRgba("#aaa")};
-  font-size: 14px;
+  ${TYPO.body14Medium}
 `;
 
 export const RadioVisual = styled.span`

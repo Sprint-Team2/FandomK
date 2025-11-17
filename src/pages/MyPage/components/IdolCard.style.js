@@ -1,3 +1,4 @@
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -116,8 +117,7 @@ export const InfoSection = styled.div`
 // 멤버 이름
 export const MemberName = styled.div`
   color: var(--color-white-100);
-  font-weight: 700;
-  font-size: 16px;
+  ${TYPO.body16Bold};
 `;
 
 // 그룹 이름
@@ -125,6 +125,5 @@ export const GroupName = styled.div`
   padding: 0 12px;
 
   color: ${hexToRgba("#FFFFFF99")};
-  font-weight: 400;
-  font-size: 14px;
+  ${TYPO.body14Medium};
 `;

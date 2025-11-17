@@ -1,4 +1,5 @@
 import { media } from "@/styles/media";
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -55,9 +56,7 @@ export const TitleWrapper = styled.div`
 
 export const SubTitle = styled.h4`
   color: ${hexToRgba("#666")};
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  ${TYPO.caption12Regular};
 
   @media ${media.tablet} {
     font-size: 1.6rem;
@@ -66,8 +65,7 @@ export const SubTitle = styled.h4`
 
 export const Title = styled.h4`
   color: var(--color-white-90);
-  font-weight: 500;
-  font-size: 1.4rem;
+  ${TYPO.body14Medium};
 
   @media ${media.tablet} {
     font-size: 1.8rem;
@@ -87,9 +85,7 @@ export const DirectionWrapper = styled.div`
   display: flex;
   margin-bottom: 8px;
 
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  ${TYPO.caption12Regular};
   justify-content: space-between;
 `;
 

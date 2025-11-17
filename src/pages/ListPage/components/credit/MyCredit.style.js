@@ -1,4 +1,5 @@
 import { media } from "@/styles/media";
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -33,8 +34,7 @@ export const CreditContainer = styled.div`
 
 export const CreditTitle = styled.div`
   color: ${hexToRgba("#fff9")};
-  font-weight: 400;
-  font-size: 12px;
+  ${TYPO.caption12Regular}
 
   @media ${media.tablet} {
     font-size: 16px;
@@ -44,8 +44,7 @@ export const CreditTitle = styled.div`
 export const CreditPoint = styled.div`
   display: flex;
 
-  font-weight: 700;
-  font-size: 20px;
+  ${TYPO.title20Bold}
   align-items: center;
 
   @media ${media.tablet} {
@@ -55,8 +54,7 @@ export const CreditPoint = styled.div`
 
 export const RechargeButton = styled.button`
   color: var(--color-primary);
-  font-weight: 700;
-  font-size: 13px;
+  ${TYPO.caption14Bold}
   line-height: 26px;
   cursor: pointer;
 

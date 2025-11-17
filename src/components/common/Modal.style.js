@@ -1,3 +1,4 @@
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -30,6 +31,5 @@ export const TitleBar = styled.div`
 
 export const ModalTitle = styled.div`
   color: var(--color-white-90);
-  font-weight: 600;
-  font-size: 18px;
+  ${TYPO.title18SemiBold}
 `;

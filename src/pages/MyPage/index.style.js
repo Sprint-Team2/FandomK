@@ -1,4 +1,5 @@
 import { media } from "@/styles/media";
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -34,8 +35,7 @@ export const AddIdolsSection = styled.section`
 
 // 섹션 제목 - 아래 마진 32px
 export const SectionTitle = styled.h2`
-  font-size: 18px;
-  font-weight: 700;
+  ${TYPO.title18SemiBold};
   color: var(--color-white-100);
   margin-bottom: 24px;
 

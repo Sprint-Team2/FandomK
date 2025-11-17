@@ -1,4 +1,5 @@
 import { media } from "@/styles/media";
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -37,9 +38,7 @@ export const FirstSection = styled(Section)`
 
 export const FirstSectionTitle = styled.h2`
   color: ${hexToRgba("#ffffffde")};
-  font-weight: 700;
-  font-size: 2.6rem;
-  line-height: 3.1rem;
+  ${TYPO.titleLg}
 `;
 
 export const FirstSectionBox = styled.div`
@@ -94,8 +93,7 @@ export const LogoContainer = styled.div`
   z-index: 1;
   margin-top: 100px;
 
-  font-weight: 400;
-  font-size: 20px;
+  ${TYPO.title20Regular}
   flex-direction: column;
   align-items: center;
   gap: 20px;

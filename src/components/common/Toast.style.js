@@ -1,3 +1,4 @@
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -19,12 +20,10 @@ export const ToastContainer = styled.div`
 
 export const ToastTitle = styled.h2`
   color: black;
-  font-weight: 600;
-  font-size: 12px;
+  ${TYPO.caption12SemiBold}
 `;
 
 export const ToastMessage = styled.p`
   color: ${hexToRgba("#333")};
-  font-weight: 500;
-  font-size: 14px;
+  ${TYPO.body14Medium}
 `;

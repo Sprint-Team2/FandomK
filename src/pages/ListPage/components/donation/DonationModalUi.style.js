@@ -1,3 +1,4 @@
+import { TYPO } from "@/styles/typography";
 import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
@@ -26,15 +27,12 @@ export const TitleWrapper = styled.div`
 
 export const SubTitle = styled.h4`
   color: ${hexToRgba("#666")};
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  ${TYPO.body14Medium}
 `;
 
 export const Title = styled.h4`
   color: var(--color-white-90);
-  font-weight: 500;
-  font-size: 1.4rem;
+  ${TYPO.body14Medium}
 `;
 
 export const FormContainer = styled.form`
@@ -55,10 +53,8 @@ export const InputWrapper = styled.div`
     height: 26px;
     padding: 0;
 
+    ${TYPO.title20Bold}
     color: var(--color-white-100);
-    font-weight: 700;
-    font-size: 2rem;
-    line-height: 2.6rem;
   }
 
   img {
@@ -75,8 +71,7 @@ export const InputWrapper = styled.div`
 export const MessageBox = styled.div`
   margin-top: 8px;
 
-  font-weight: 500;
-  font-size: 1.2rem;
+  ${TYPO.caption12SemiBold}
   color: ${hexToRgba("#ff2626")};
 
   ${({ $color }) => $color && { color: $color }}
