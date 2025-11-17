@@ -3,6 +3,7 @@ import IdolCard from "@/components/mypage/IdolCard";
 import MypageAdd from "@/assets/svg/MypageAddSvg";
 import MypageArrow from "@/assets/svg/MypageArrowSvg";
 import { getIdolList } from "@/api/idolsClient";
+import { getRecommendations } from "@/api/recommendationClient";
 import { idolsStorage } from "@/storage/idols.storage";
 import * as S from "./Mypage.style";
 
@@ -20,6 +21,10 @@ const Mypage = () => {
 
   // API로 불러온 전체 아이돌 목록
   const [allIdols, setAllIdols] = useState([]);
+
+  // AI 추천 아이돌 목록
+  const [recommendedIdols, setRecommendedIdols] = useState([]);
+  const [isLoadingRecommendations, setIsLoadingRecommendations] = useState(false);
 
   // 로딩 및 에러 상태
   const [isLoading, setIsLoading] = useState(false);
@@ -52,20 +57,68 @@ const Mypage = () => {
     idolsStorage.set(selectedIdols);
   }, [selectedIdols]);
 
+  // 관심 아이돌 변경 시 AI 추천 업데이트
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      // 관심 아이돌이 없으면 추천 안 함
+      if (selectedIdols.length === 0 || allIdols.length === 0) {
+        console.log("AI 추천 스킵: 관심 아이돌 없음");
+        setRecommendedIdols([]);
+        return;
+      }
+
+      console.log("🤖 AI 추천 요청 시작:", selectedIdols);
+      setIsLoadingRecommendations(true);
+      try {
+        const result = await getRecommendations(selectedIdols, 8);
+        console.log("✅ AI 추천 응답:", result);
+
+        const { recommended_ids } = result;
+
+        // 추천된 ID로 아이돌 객체 찾기
+        const recommended = recommended_ids
+          .map((id) => allIdols.find((idol) => idol.id === id))
+          .filter((idol) => idol && !selectedIdols.includes(idol.id)); // 이미 선택된 건 제외
+
+        console.log(
+          "📋 추천 아이돌 목록:",
+          recommended.map((i) => i?.name)
+        );
+        setRecommendedIdols(recommended);
+      } catch (err) {
+        console.error("❌ 추천을 불러오는데 실패했습니다:", err);
+        setRecommendedIdols([]);
+      } finally {
+        setIsLoadingRecommendations(false);
+      }
+    };
+
+    fetchRecommendations();
+  }, [selectedIdols, allIdols]);
+
   // 선택된 아이돌 객체 배열 가져오기
   const favoriteIdols = allIdols.filter((idol) => selectedIdols.includes(idol.id));
 
   // 추가 가능한 아이돌 (이미 관심 아이돌에 없는 것만)
   const availableIdols = allIdols.filter((idol) => !selectedIdols.includes(idol.id));
 
+  // AI 추천이 있으면 첫 페이지에 우선 배치, 나머지는 그 뒤에
+  const availableIdolsWithRecommendations =
+    selectedIdols.length > 0 && recommendedIdols.length > 0
+      ? [
+          ...recommendedIdols.slice(0, 8), // AI 추천 최대 8개
+          ...availableIdols.filter((idol) => !recommendedIdols.some((rec) => rec.id === idol.id)),
+        ]
+      : availableIdols;
+
   // 현재 페이지의 아이돌들
-  const currentPageIdols = availableIdols.slice(
+  const currentPageIdols = availableIdolsWithRecommendations.slice(
     currentPage * IDOLS_PER_PAGE,
     (currentPage + 1) * IDOLS_PER_PAGE
   );
 
   // 전체 페이지 수
-  const totalPages = Math.ceil(availableIdols.length / IDOLS_PER_PAGE);
+  const totalPages = Math.ceil(availableIdolsWithRecommendations.length / IDOLS_PER_PAGE);
 
   // 관심 아이돌 삭제 핸들러
   const handleRemoveIdol = (idolId) => {

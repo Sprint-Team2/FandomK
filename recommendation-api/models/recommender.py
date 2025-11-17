@@ -15,7 +15,7 @@ class IdolRecommender:
         self.idols_data = []
         self.embeddings = None
         self.idol_id_to_idx = {}
-        self.embeddings_cache = None  # 캐싱용
+        #self.embeddings_cache = None  # 캐싱용
 
     async def initialize(self):
         """아이돌 데이터 로드 및 임베딩 생성"""
