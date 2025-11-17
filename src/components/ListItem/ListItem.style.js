@@ -2,14 +2,16 @@ import styled from "styled-components";
 
 export const Item = styled.div`
   display: flex;
-  height: 70px;
   align-items: center;
   gap: 10px;
-  border-bottom: 1px solid rgb(225 225 225 / 10%);
-  cursor: pointer;
+  height: 70px;
+  border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+  padding: ${({ $variant }) => ($variant === "vote" ? "0 12px" : "0")};
+  border-bottom: ${({ $variant }) =>
+    $variant === "chart" ? "none" : "1px solid rgba(225, 225, 225, 0.1)"};
 
-  /* background: ${({ $selected }) => ($selected ? "rgba(249,109,105,0.08)" : "transparent")};
-  transition: background 0.2s ease; */
+  cursor: ${({ $variant }) => ($variant === "vote" ? "pointer" : "default")};
+  transition: ${({ $variant }) => ($variant === "vote" ? "background 0.2s ease" : "none")};
 `;
 
 export const Img = styled.img`
@@ -21,41 +23,49 @@ export const Img = styled.img`
 `;
 
 export const Rank = styled.span`
-  color: rgb(249 109 105 / 100%);
-  font-weight: 400;
   font-size: 14px;
+  width: 18px;
+  text-align: right;
+  opacity: 0.9;
+  color: rgba(249, 109, 105, 1);
 `;
 
 export const TextGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   flex: 1;
+  min-width: 0;
 `;
 
 export const Name = styled.p`
   font-weight: 500;
-  font-size: 14px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ListVotes = styled.p`
-  margin: 4px 0 0;
-
-  color: #aaa;
-  font-weight: 400;
   font-size: 14px;
+  color: #aaa;
+  margin: 0 0 0 auto;
 `;
 
 export const RadioVisual = styled.span`
-  display: flex;
-  width: 16px;
-  height: 16px;
-  border: 2px solid ${({ $selected }) => ($selected ? "#F96D69" : "#666")};
+  display: ${({ $variant }) => ($variant === "chart" ? "none" : "flex")};
+
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
+  border: 2px solid ${({ $selected }) => ($selected ? "#F96D69" : "#666")};
   align-items: center;
   justify-content: center;
 
   &::after {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: ${({ $selected }) => ($selected ? "#F96D69" : "transparent")};
     transition: background 0.2s ease;
