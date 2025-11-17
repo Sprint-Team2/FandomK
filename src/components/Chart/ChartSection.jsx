@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import client from "../../api/client";
-import ListItem from "../listItem/ListItem";
-import VoteSection from "../Vote/VoteSection";
+import ListItem from "../ListItem/ListItem";
+import VoteSection from "../vote/VoteSection";
 import * as S from "./ChartSection.styles";
 
 const BREAKPOINT = 744;

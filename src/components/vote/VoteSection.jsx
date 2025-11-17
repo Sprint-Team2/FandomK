@@ -1,7 +1,7 @@
 import { creditStorage } from "@/storage/credit.storage";
 import { useEffect, useState } from "react";
 import client from "../../api/client";
-import ListItem from "../listItem/ListItem";
+import ListItem from "../ListItem/ListItem";
 import CreditLimitModal from "./CreditLimitModal";
 import * as S from "./VoteSection.style";
 
