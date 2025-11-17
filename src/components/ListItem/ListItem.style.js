@@ -39,7 +39,6 @@ export const TextGroup = styled.div`
 `;
 
 export const Name = styled.p`
-  font-size: 14px;
   font-weight: 500;
   margin: 0;
   white-space: nowrap;

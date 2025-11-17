@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { Item, Img, Rank, TextGroup, Name, ListVotes, RadioVisual } from "./ListItem.style.js";
 
 const ListItem = ({ id, img, rank, name, votes, selected, onSelect, variant = "vote" }) => {
