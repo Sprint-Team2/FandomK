@@ -2,7 +2,7 @@ import axios from "axios";
 
 // AI 추천 API 클라이언트
 const recommendationClient = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: import.meta.env.VITE_AI_API_URL || "https://dayeoni-ai-recommendation.hf.space",
   timeout: 30000, // AI 모델 처리 시간 고려해서 30초로 증가
 });
 
