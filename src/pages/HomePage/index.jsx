@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { css } from "styled-components";
 import * as S from "./index.style";
 
-function Homepage() {
+const Homepage = () => {
   const navigate = useNavigate();
   const [_, actions] = useCreditContext();
 
@@ -34,7 +34,7 @@ function Homepage() {
       <S.VerticalLine />
     </S.Container>
   );
-}
+};
 
 const StartSection = ({ onClick }) => {
   return (
