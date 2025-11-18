@@ -138,7 +138,6 @@ export const Vote = styled.div`
   z-index: 10;
   height: 106px;
   background: transparent;
-  pointer-events: none;
   width: 100%;
 
   @media (${media.tablet}) {

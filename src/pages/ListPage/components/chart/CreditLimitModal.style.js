@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   position: fixed;
   z-index: 999;
   inset: 0;
-  background: ${hexToRgba("#323232")};
+  background: ${hexToRgba("#000000B2")};
   justify-content: center;
   align-items: center;
 `;
