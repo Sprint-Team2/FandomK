@@ -2,6 +2,7 @@ import client from "@/api/client";
 import HighlightButton from "@/components/common/HighlightButton";
 import useModal from "@/hooks/useModal";
 import { useEffect, useState } from "react";
+import { useErrorBoundary } from "react-error-boundary";
 import { css } from "styled-components";
 import * as S from "./ChartSection.styles";
 import ListItem from "./ListItem";
@@ -10,6 +11,7 @@ import VoteModal from "./VoteModal";
 const BREAKPOINT = 744;
 
 const ChartSection = () => {
+  const { showBoundary } = useErrorBoundary();
   const getInitWidth = () => (typeof window !== "undefined" ? window.innerWidth : BREAKPOINT);
 
   const [gender, setGender] = useState("female");
@@ -22,25 +24,29 @@ const ChartSection = () => {
 
   useEffect(() => {
     const loadIdols = async () => {
-      const res = await client.get("/idols", { params: { pageSize: 100 } });
-      const idols = res.data.list;
+      try {
+        const res = await client.get("/idols", { params: { pageSize: 100 } });
+        const idols = res.data.list;
 
-      const filtered = idols.filter((i) => i.gender === gender);
+        const filtered = idols.filter((i) => i.gender === gender);
 
-      const sorted = filtered
-        .sort((a, b) => b.totalVotes - a.totalVotes)
-        .map((i, idx) => ({
-          id: i.id,
-          name: i.name,
-          img: i.profilePicture,
-          votes: i.totalVotes,
-          rank: idx + 1,
-        }));
+        const sorted = filtered
+          .sort((a, b) => b.totalVotes - a.totalVotes)
+          .map((i, idx) => ({
+            id: i.id,
+            name: i.name,
+            img: i.profilePicture,
+            votes: i.totalVotes,
+            rank: idx + 1,
+          }));
 
-      setList(sorted);
+        setList(sorted);
+      } catch (e) {
+        showBoundary(e);
+      }
     };
     loadIdols();
-  }, [gender]);
+  }, [gender, showBoundary]);
 
   useEffect(() => {
     const onResize = () => setWindowWidth(window.innerWidth);

@@ -1,4 +1,3 @@
-import { showToast } from "@/components/common/Toast";
 import client from "./client";
 import PATCHS from "./path";
 
@@ -10,11 +9,6 @@ import PATCHS from "./path";
  * }} params
  */
 export const getIdolList = async (params) => {
-  try {
-    const response = await client.get(PATCHS.idols, { params });
-    return response.data;
-  } catch (e) {
-    showToast("에러 발생", e.toString());
-    throw e;
-  }
+  const response = await client.get(PATCHS.idols, { params });
+  return response.data;
 };

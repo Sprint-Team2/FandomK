@@ -3,7 +3,7 @@ import { hexToRgba } from "@/utils/color";
 import styled from "styled-components";
 
 export const ToastContainer = styled.div`
-  position: absolute;
+  position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 2000;
