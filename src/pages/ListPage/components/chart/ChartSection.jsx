@@ -16,7 +16,7 @@ const ChartSection = () => {
 
   const [gender, setGender] = useState("female");
   const { isOpen, onOpen, onClose, modalContent, setModalContent } = useModal();
-
+  const [trigger, setTrigger] = useState(false);
   const [windowWidth, setWindowWidth] = useState(getInitWidth());
   const [visibleCount, setVisibleCount] = useState(getInitWidth() >= BREAKPOINT ? 10 : 5);
 
@@ -25,7 +25,7 @@ const ChartSection = () => {
   useEffect(() => {
     const loadIdols = async () => {
       try {
-        const res = await getChartList({ pageSize: 10, gender: gender });
+        const res = await getChartList({ pageSize: 100, gender: gender });
         const idols = res.idols;
         const filtered = idols.filter((i) => i.gender === gender);
 
@@ -46,7 +46,7 @@ const ChartSection = () => {
       }
     };
     loadIdols();
-  }, [gender, showBoundary, setModalContent]);
+  }, [gender, showBoundary, setModalContent, trigger]);
 
   useEffect(() => {
     const onResize = () => setWindowWidth(window.innerWidth);
@@ -74,6 +74,10 @@ const ChartSection = () => {
 
   const handleMore = () => {
     setVisibleCount((v) => Math.min(v + 5, data.length));
+  };
+
+  const handleTrigger = () => {
+    setTrigger((pre) => !pre);
   };
 
   let gridContent;
@@ -157,7 +161,9 @@ const ChartSection = () => {
         </S.MoreBtn>
       </S.MoreArea>
 
-      {isOpen && <VoteModal modalContent={modalContent} onClose={onClose} />}
+      {isOpen && (
+        <VoteModal modalContent={modalContent} onClose={onClose} handleTrigger={handleTrigger} />
+      )}
     </S.Wrap>
   );
 };

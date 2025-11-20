@@ -10,11 +10,11 @@ import * as S from "./VoteModal.style";
 
 const NEED_CREDIT = 1000;
 
-const VoteModal = ({ onClose, modalContent }) => {
-  const [list, setList] = useState(modalContent.list);
+const VoteModal = ({ onClose, modalContent, handleTrigger }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [_, { isEnoughCredit, subtractCredit }] = useCreditContext();
   const [isCreditModalOpen, setIsCreditModalOpen] = useState(false);
+
   const submit = async () => {
     if (!selectedId) return;
     if (!isEnoughCredit(NEED_CREDIT)) {
@@ -22,17 +22,9 @@ const VoteModal = ({ onClose, modalContent }) => {
       return;
     }
 
-    const res = await client.post("/votes", { idolId: selectedId });
-    const updated = res.data.idol;
-
+    await client.post("/votes", { idolId: selectedId });
     subtractCredit(NEED_CREDIT);
-
-    const newList = modalContent.list
-      .map((i) => (i.id === updated.id ? { ...i, votes: updated.totalVotes } : i))
-      .sort((a, b) => b.votes - a.votes)
-      .map((i, idx) => ({ ...i, rank: idx + 1 }));
-
-    setList(newList);
+    handleTrigger();
     setSelectedId(null);
   };
 
@@ -56,7 +48,7 @@ const VoteModal = ({ onClose, modalContent }) => {
           </S.Header>
 
           <S.List>
-            {list.map((c) => (
+            {modalContent.list.map((c) => (
               <ListItem
                 key={c.id}
                 {...c}
